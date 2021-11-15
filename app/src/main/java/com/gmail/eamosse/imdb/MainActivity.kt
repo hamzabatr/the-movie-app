@@ -19,7 +19,7 @@ import org.koin.android.ext.android.inject
  */
 class MainActivity : AppCompatActivity() {
 
-    val repository: MovieRepository by inject()
+    private val repository: MovieRepository by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
