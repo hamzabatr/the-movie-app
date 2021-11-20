@@ -8,6 +8,8 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val appModule = module {
+    // On injecte l'api key en utilisant la propriété named
+    // ce qui permet de lui donner un nom (ici API_KEY)
     single(named("API_KEY")) {
         "507a86e6d98ae2b2cd600e594ee02637"
     }
