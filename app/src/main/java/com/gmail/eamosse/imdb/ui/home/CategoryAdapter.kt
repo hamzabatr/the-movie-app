@@ -28,8 +28,8 @@ class CategoryAdapter(private val items: List<Category>) : RecyclerView.Adapter<
         holder.bind(items[position])
         holder.mCategoryImg.setOnClickListener{
             val nextAction = HomeFragmentDirections.actionHomeFragmentToHomeSecondFragment(position.toString())
+            nextAction.myArg = items[position].id.toString()
             Navigation.findNavController(it).navigate(nextAction)
-
         }
     }
 }
