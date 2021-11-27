@@ -4,15 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
-
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-
-import com.gmail.eamosse.imdb.R
-import com.gmail.eamosse.imdb.databinding.FragmentHomeBinding
 import com.gmail.eamosse.imdb.databinding.FragmentHomeSecondBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
