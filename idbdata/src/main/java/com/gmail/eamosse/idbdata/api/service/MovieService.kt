@@ -14,5 +14,5 @@ internal interface MovieService {
     suspend fun getCategories(): Response<CategoryResponse>
 
     @GET("discover/movie")
-    suspend fun discoverMovies(): Response<DiscoverResponse>
+    suspend fun discoverMovies(id: Int): Response<DiscoverResponse>
 }

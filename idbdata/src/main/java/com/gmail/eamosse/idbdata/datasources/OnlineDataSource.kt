@@ -61,9 +61,9 @@ internal class OnlineDataSource(private val service: MovieService) {
         }
     }
 
-    suspend fun discoverMovies(): Result<List<DiscoverResponse.Movie>> {
+    suspend fun discoverMovies(id: Int): Result<List<DiscoverResponse.Movie>> {
         return try {
-            val response = service.discoverMovies()
+            val response = service.discoverMovies(id)
             if (response.isSuccessful) {
                 Result.Succes(response.body()!!.results)
             } else {

@@ -27,7 +27,7 @@ class HomeFragment : Fragment() {
 
         with(homeViewModel) {
             token.observe(viewLifecycleOwner, {
-                //récupérer les catégories
+                // récupérer les catégories
                 getCategories()
             })
 
@@ -36,8 +36,7 @@ class HomeFragment : Fragment() {
             })
 
             error.observe(viewLifecycleOwner, {
-                //afficher l'erreur
-
+                // afficher l'erreur
             })
         }
     }
