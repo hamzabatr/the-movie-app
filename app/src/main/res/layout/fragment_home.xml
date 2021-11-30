@@ -19,5 +19,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:spanCount="4"
             tools:listitem="@layout/category_list_item" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

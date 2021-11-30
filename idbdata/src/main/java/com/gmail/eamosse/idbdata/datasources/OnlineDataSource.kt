@@ -1,9 +1,13 @@
 package com.gmail.eamosse.idbdata.datasources
 
+import com.gmail.eamosse.idbdata.api.response.*
 import com.gmail.eamosse.idbdata.api.response.CategoryResponse
 import com.gmail.eamosse.idbdata.api.response.MovieResponse
+import com.gmail.eamosse.idbdata.api.response.MoviesResponse
 import com.gmail.eamosse.idbdata.api.response.TokenResponse
+import com.gmail.eamosse.idbdata.api.response.VideoResponse
 import com.gmail.eamosse.idbdata.api.service.MovieService
+import com.gmail.eamosse.idbdata.data.Movies
 import com.gmail.eamosse.idbdata.utils.Result
 
 /**
@@ -61,9 +65,51 @@ internal class OnlineDataSource(private val service: MovieService) {
         }
     }
 
-    suspend fun getMoviesByCategory(genreId: String): Result<List<MovieResponse.Movie>> {
+    suspend fun getMoviesByCategory(genreId: String, page: Int): Result<List<MoviesResponse.Movies>> {
         return try {
-            val response = service.getMoviesByCategory(genreId)
+            val response = service.getMoviesByCategory(genreId, page)
+            if (response.isSuccessful) {
+                Result.Succes(response.body()!!.results)
+            } else {
+                Result.Error(
+                    exception = Exception(),
+                    message = response.message(),
+                    code = response.code()
+                )
+            }
+        } catch (e: Exception) {
+            Result.Error(
+                exception = e,
+                message = e.message ?: "No message",
+                code = -1
+            )
+        }
+    }
+
+    suspend fun getMovieById(MovieId: String): Result<MovieResponse> {
+        return try {
+            val response = service.getMovieById(MovieId)
+            if (response.isSuccessful) {
+                Result.Succes(response.body()!!)
+            } else {
+                Result.Error(
+                    exception = Exception(),
+                    message = response.message(),
+                    code = response.code()
+                )
+            }
+        } catch (e: Exception) {
+            Result.Error(
+                exception = e,
+                message = e.message ?: "No message",
+                code = -1
+            )
+        }
+    }
+
+    suspend fun getVideoMovieById(movieId: String): Result<List<VideoResponse.Video>> {
+        return try {
+            val response = service.getVideoMovieById(movieId)
             if (response.isSuccessful) {
                 Result.Succes(response.body()!!.results)
             } else {
