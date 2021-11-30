@@ -33,10 +33,11 @@ class MoviesAdapter(private val items: List<Movies>) :
         holder.bind(items[position])
         val context = holder.mMovieImg.context
         Glide.with(context)
-            .load(basePosterPath+items[position].poster_path)
+            .load(basePosterPath + items[position].poster_path)
             .into(holder.mMovieImg)
-        holder.mMovieImg.setOnClickListener{
-            val nextAction = HomeSecondFragmentDirections.actionNavigationHomeSecondToMovieFragment(items[position].id.toString())
+        holder.mMovieImg.setOnClickListener {
+            val nextAction =
+                HomeSecondFragmentDirections.actionNavigationHomeSecondToMovieFragment(items[position].id.toString())
             Navigation.findNavController(it).navigate(nextAction)
         }
     }

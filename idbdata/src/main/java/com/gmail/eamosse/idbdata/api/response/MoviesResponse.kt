@@ -36,7 +36,6 @@ internal data class MoviesResponse(
         @SerializedName("adult")
         val adult: Boolean
     )
-
 }
 
 internal fun MoviesResponse.Movies.toMovies() = Movies(

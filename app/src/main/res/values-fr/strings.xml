@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Anneflix</string>
+    <string name="next">Suivant</string>
+    <string name="previous">Précédent</string>
+    <string name="title_home">Accueil</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_about">À propos</string>
+    <string name="title_settings">Paramètres</string>
+    <string name="title_languages">Langues</string>
+    <string name="title_night_mode">Mode sombre</string>
+    <string name="title_volume">Volume</string>
+    <string name="title_disable_notifications">Déactiver les notifications</string>
+    <string name="title_enable_night_mode">Activer le mode sombre</string>
+
+    <string name="enable">Vous recevrez toutes les notifications</string>
+    <string name="disable">Vous ne recevrez plus aucunes notifications</string>
+    <string name="languages">Langues (pays/region)</string>
+
+    <string name="ring">Sonnerie</string>
+    <string name="vibrate">Vibrations</string>
+    <string name="silent">Silencieux</string>
+    <string name="notifications_mode">Mode de notifications</string>
+
+    <string name="english">English</string>
+    <string name="francais">Français</string>
+
+    <string name="categorie">Catégorie</string>
+
+    <string name="batr_name">Batr Hamza</string>
+    <string name="batr_description">Hamza à créer la page pour visualiser les catégories de film, ainsi que celles pour visualiser tous
+    les films d\'une certaine catégorie.</string>
+    <string name="roussy_name">Roussy Jeremy</string>
+    <string name="roussy_description">Jeremy était responsable de la page de paramètres, ainsi que de la page à propos.</string>
+    <string name="saubanere_name">Saubanere Théo</string>
+    <string name="saubanere_description">Théo s\'est occupé de la barre de recherche</string>
+
+    <string name="home_second">Film</string>
+    <string name="hello_home_second">Hello HomeSecondFragment. Arg: %1$s</string>
+    <string name="hello_dashboard_second">Hello DashboardSecondFragment. Arg: %1$s</string>
+    <string name="hello_notifications_second">Hello NotificationsSecondFragment. Arg: %1$s</string>
+    <string name="previous_page">Page précédente</string>
+    <string name="next_page">Page suivante</string>
+    <string name="title_movie">Film</string>
+    <string name="movie_poster">Image du film</string>
+</resources>

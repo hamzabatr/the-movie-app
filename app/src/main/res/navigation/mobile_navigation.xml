@@ -49,4 +49,14 @@
             android:name="myArg"
             app:argType="string" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.gmail.eamosse.imdb.ui.settings.SettingsFragment"
+        android:label="@string/title_settings"/>
+
+    <fragment
+        android:id="@+id/navigation_about"
+        android:name="com.gmail.eamosse.imdb.ui.about.AboutFragment"
+        android:label="@string/title_about"/>
 </navigation>
