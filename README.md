@@ -49,5 +49,14 @@ Techniquement, ce projet devrait nous permettre d'expérimenter de manière plus
     - Captures d'écrans des principales vues 
     - Vidéos de démonstration de l'application 
 
+## Le contexte du projet et ses différentes fonctionnalités
+C'est une application de streaming de films, piochés depuis une base de données distante. Elle a deux fonctionnalités majeures :
+- Afficher différentes catégories de films,
+- Afficher différents films d'une catégorie.
 
+## Membres du groupe
+- BATR Hamza
+- ROUSSY Jérémy
+- SAUBANERE Théo
 
+## Captures d'écrans des principales vues et vidéos de démonstration de l'application

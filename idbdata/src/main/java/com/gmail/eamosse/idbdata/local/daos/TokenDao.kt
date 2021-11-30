@@ -1,6 +1,6 @@
 package com.gmail.eamosse.idbdata.local.daos
 
-import androidx.room.*
+import androidx.room.* // ktlint-disable no-wildcard-imports
 import com.gmail.eamosse.idbdata.local.entities.TokenEntity
 
 @Dao
