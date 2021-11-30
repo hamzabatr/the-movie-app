@@ -27,18 +27,27 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         with(homeViewModel) {
-            token.observe(viewLifecycleOwner, Observer {
-                //récupérer les catégories
-                getCategories()
-            })
+            token.observe(
+                viewLifecycleOwner,
+                Observer {
+                    // récupérer les catégories
+                    getCategories()
+                }
+            )
 
-            categories.observe(viewLifecycleOwner, Observer {
-                binding.categoryList.adapter = CategoryAdapter(it)
-            })
+            categories.observe(
+                viewLifecycleOwner,
+                Observer {
+                    binding.categoryList.adapter = CategoryAdapter(it)
+                }
+            )
 
-            error.observe(viewLifecycleOwner, Observer {
-                //afficher l'erreur
-            })
+            error.observe(
+                viewLifecycleOwner,
+                Observer {
+                    // afficher l'erreur
+                }
+            )
         }
     }
 }
