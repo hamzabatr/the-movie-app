@@ -1,0 +1,25 @@
+<resources>
+    <!-- Languages Preference -->
+    <string-array name="languages_entries">
+        <item>@string/english</item>
+        <item>@string/francais</item>
+    </string-array>
+
+    <string-array name="languages_values">
+        <item>@string/english</item>
+        <item>@string/francais</item>
+    </string-array>
+
+    <!-- Notifications mode Preference -->
+    <string-array name="notifications_entries">
+        <item>@string/ring</item>
+        <item>@string/vibrate</item>
+        <item>@string/silent</item>
+    </string-array>
+
+    <string-array name="notifications_values">
+        <item>@string/ring</item>
+        <item>@string/vibrate</item>
+        <item>@string/silent</item>
+    </string-array>
+</resources>
