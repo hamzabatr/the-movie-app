@@ -24,8 +24,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         with(homeViewModel) {
+
             token.observe(viewLifecycleOwner, {
                 // récupérer les catégories
                 getCategories()
