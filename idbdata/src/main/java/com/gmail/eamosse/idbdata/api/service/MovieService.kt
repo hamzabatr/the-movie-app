@@ -1,18 +1,30 @@
 package com.gmail.eamosse.idbdata.api.service
 
+import com.gmail.eamosse.idbdata.api.response.*
 import com.gmail.eamosse.idbdata.api.response.CategoryResponse
-import com.gmail.eamosse.idbdata.api.response.DiscoverResponse
+import com.gmail.eamosse.idbdata.api.response.MovieResponse
+import com.gmail.eamosse.idbdata.api.response.MoviesResponse
 import com.gmail.eamosse.idbdata.api.response.TokenResponse
+import com.gmail.eamosse.idbdata.api.response.VideoResponse
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 internal interface MovieService {
+
     @GET("authentication/token/new")
     suspend fun getToken(): Response<TokenResponse>
 
     @GET("genre/movie/list")
     suspend fun getCategories(): Response<CategoryResponse>
 
-    @GET("discover/movie")
-    suspend fun discoverMovies(id: Int): Response<DiscoverResponse>
+    @GET("discover/movie?")
+    suspend fun getMoviesByCategory(@Query("with_genres") genreId: String, @Query("page") page: Int): Response<MoviesResponse>
+
+    @GET("movie/{movie_id}")
+    suspend fun getMovieById(@Path("movie_id") MovieId: String): Response<MovieResponse>
+
+    @GET("movie/{movie_id}/videos")
+    suspend fun getVideoMovieById(@Path("movie_id") MovieId: String): Response<VideoResponse>
 }

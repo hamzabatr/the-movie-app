@@ -6,14 +6,13 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.eamosse.idbdata.data.Category
+import com.gmail.eamosse.imdb.MainActivity
 import com.gmail.eamosse.imdb.databinding.CategoryListItemBinding
 
-class CategoryAdapter(private val items: List<Category>) :
-    RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+class CategoryAdapter(private val items: List<Category>) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
-    inner class ViewHolder(private val binding: CategoryListItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        val mCategoryImg: AppCompatImageView = binding.categoryImg
+    inner class ViewHolder(private val binding: CategoryListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        val mCategoryImg : AppCompatImageView = binding.categoryImg
         fun bind(item: Category) {
             binding.item = item
         }
@@ -28,9 +27,8 @@ class CategoryAdapter(private val items: List<Category>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(items[position])
-        holder.mCategoryImg.setOnClickListener {
-            val nextAction =
-                HomeFragmentDirections.actionHomeFragmentToHomeSecondFragment(position.toString())
+        holder.mCategoryImg.setOnClickListener{
+            val nextAction = HomeFragmentDirections.actionHomeFragmentToHomeSecondFragment(items[position].id.toString())
             Navigation.findNavController(it).navigate(nextAction)
         }
     }
