@@ -40,14 +40,10 @@
     <string name="saubanere_description">yo</string>
 
     <string name="home_second">Movies</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="title_movie">Movie</string>
     <string name="movie_poster">Movie poster</string>
     <string name="previous_page">previous page</string>
     <string name="next_page">next page</string>
-    <string name="_1">1</string>
-    <string name="home_second">Home Second</string>
-    <string name="hello_home_second">Hello HomeSecondFragment. Arg: %1$s</string>
-    <string name="hello_dashboard_second">Hello DashboardSecondFragment. Arg: %1$s</string>
-    <string name="hello_notifications_second">Hello NotificationsSecondFragment. Arg: %1$s</string>
+    <string name="_1" translatable="false">1</string>
 </resources>
