@@ -3,20 +3,21 @@ package com.gmail.eamosse.imdb.ui.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.gmail.eamosse.idbdata.data.Movie
+import com.gmail.eamosse.idbdata.data.Movies
 import com.gmail.eamosse.imdb.databinding.MovieListItemBinding
 
-class MovieAdapter(private val items: List<Movie>) :
-    RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
+class MoviesAdapter(private val items: List<Movies>) :
+    RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
     private val basePosterPath = "https://image.tmdb.org/t/p/w500"
 
     inner class ViewHolder(private val binding: MovieListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val mMovieImg: AppCompatImageView = binding.movieImg
-        fun bind(item: Movie) {
+        fun bind(item: Movies) {
             binding.item = item
         }
     }
@@ -34,5 +35,9 @@ class MovieAdapter(private val items: List<Movie>) :
         Glide.with(context)
             .load(basePosterPath+items[position].poster_path)
             .into(holder.mMovieImg)
+        holder.mMovieImg.setOnClickListener{
+            val nextAction = HomeSecondFragmentDirections.actionNavigationHomeSecondToMovieFragment(items[position].id.toString())
+            Navigation.findNavController(it).navigate(nextAction)
+        }
     }
 }
