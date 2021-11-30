@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
-import androidx.preference.* // ktlint-disable no-wildcard-imports
+import androidx.preference.*
 import com.gmail.eamosse.imdb.R
 
 class SettingsFragment :
@@ -43,7 +43,12 @@ class SettingsFragment :
         }
 
         findPreference<ListPreference>("notifications_mode")?.setEnabled(!notifications)
-        findPreference<SeekBarPreference>("notifications_volume")?.setEnabled(!notifications && !(notifications_mode.equals(getString(R.string.vibrate)) || notifications_mode.equals(getString(R.string.silent))))
+        findPreference<SeekBarPreference>("notifications_volume")?.setEnabled(
+            !notifications && !(
+                notifications_mode.equals(
+                    getString(R.string.vibrate)
+                ) || notifications_mode.equals(getString(R.string.silent))
+                )
+        )
     }
 }
-

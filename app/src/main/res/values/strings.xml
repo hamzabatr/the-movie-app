@@ -3,7 +3,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_home_second">Bienvenue dans la catégorie %1$s</string>
+    <string name="hello_home_second">Category %1$s</string>
     <string name="hello_dashboard_second">Hello DashboardSecondFragment. Arg: %1$s</string>
     <string name="hello_notifications_second">Hello NotificationsSecondFragment. Arg: %1$s</string>
 

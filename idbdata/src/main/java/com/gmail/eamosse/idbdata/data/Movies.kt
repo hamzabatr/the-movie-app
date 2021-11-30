@@ -1,7 +1,5 @@
 package com.gmail.eamosse.idbdata.data
 
-import com.google.gson.annotations.SerializedName
-
 data class Movies(
 
     val poster_path: String,

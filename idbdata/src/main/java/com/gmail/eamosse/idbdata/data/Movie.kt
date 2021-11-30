@@ -1,6 +1,6 @@
 package com.gmail.eamosse.idbdata.data
 
-data class  Movie (
+data class Movie(
     val adult: Boolean,
     val genres: List<Category>,
     val id: Int,

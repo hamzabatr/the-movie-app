@@ -13,7 +13,6 @@ internal data class VideoResponse(
         @SerializedName("key")
         val key: String
     )
-
 }
 
 internal fun VideoResponse.Video.toVideo() = Video(

@@ -6,12 +6,12 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.gmail.eamosse.idbdata.repository.MovieRepository
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -24,7 +24,6 @@ import org.koin.android.ext.android.inject
 class MainActivity : AppCompatActivity() {
 
     private val repository: MovieRepository by inject()
-    private lateinit var toolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,9 +40,9 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
-        val navigated = NavigationUI.onNavDestinationSelected(item!!, navController)
+        val navigated = NavigationUI.onNavDestinationSelected(item, navController)
         return navigated || super.onOptionsItemSelected(item)
     }
 
@@ -66,5 +65,4 @@ class MainActivity : AppCompatActivity() {
         // Finalement, on lie la bottom bar et la nav controller
         navView.setupWithNavController(navController)
     }
-
 }
