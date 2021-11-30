@@ -4,9 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gmail.eamosse.idbdata.data.Category
-import com.gmail.eamosse.idbdata.data.Movie
-import com.gmail.eamosse.idbdata.data.Token
+import com.gmail.eamosse.idbdata.data.*
 import com.gmail.eamosse.idbdata.repository.MovieRepository
 import com.gmail.eamosse.idbdata.utils.Result
 import kotlinx.coroutines.Dispatchers
@@ -25,9 +23,17 @@ class HomeViewModel(private val repository: MovieRepository) : ViewModel() {
     val categories: LiveData<List<Category>>
         get() = _categories
 
-    private val _movies: MutableLiveData<List<Movie>> = MutableLiveData()
-    val movies: LiveData<List<Movie>>
+    private val _movies: MutableLiveData<List<Movies>> = MutableLiveData()
+    val movies: LiveData<List<Movies>>
         get() = _movies
+
+    private val _movie: MutableLiveData<Movie> = MutableLiveData()
+    val movie: LiveData<Movie>
+        get() = _movie
+
+    private val _videos: MutableLiveData<List<Video>> = MutableLiveData()
+    val videos: LiveData<List<Video>>
+        get() = _videos
 
     private val _error: MutableLiveData<String> = MutableLiveData()
     val error: LiveData<String>
@@ -71,11 +77,37 @@ class HomeViewModel(private val repository: MovieRepository) : ViewModel() {
         }
     }
 
-    fun getMoviesByCategory(genreId: String) {
+    fun getMoviesByCategory(genreId: String, page: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            when (val result = repository.getMoviesByCategory(genreId)) {
+            when (val result = repository.getMoviesByCategory(genreId, page)) {
                 is Result.Succes -> {
                     _movies.postValue(result.data)
+                }
+                is Result.Error -> {
+                    _error.postValue(result.message)
+                }
+            }
+        }
+    }
+
+    fun getMovieById(movieId: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            when (val result = repository.getMovieById(movieId)) {
+                is Result.Succes -> {
+                    _movie.postValue(result.data)
+                }
+                is Result.Error -> {
+                    _error.postValue(result.message)
+                }
+            }
+        }
+    }
+
+    fun getVideoMovieById(movieId: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            when (val result = repository.getVideoMovieById(movieId)) {
+                is Result.Succes -> {
+                    _videos.postValue(result.data)
                 }
                 is Result.Error -> {
                     _error.postValue(result.message)
