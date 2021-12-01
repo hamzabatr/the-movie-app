@@ -46,4 +46,6 @@
     <string name="previous_page">previous page</string>
     <string name="next_page">next page</string>
     <string name="_1" translatable="false">1</string>
+    <string name="title_discover">Discover</string>
+    <string name="title_favorites">Favorites</string>
 </resources>

@@ -31,15 +31,15 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.gmail.eamosse.imdb.ui.dashboard.DashboardFragment"
+        android:name="com.gmail.eamosse.imdb.ui.discover.DiscoverFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_discover" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.gmail.eamosse.imdb.ui.notifications.NotificationsFragment"
+        android:name="com.gmail.eamosse.imdb.ui.favorites.FavoritesFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_favorites" />
     <fragment
         android:id="@+id/navigation_movie"
         android:name="com.gmail.eamosse.imdb.ui.home.MovieFragment"

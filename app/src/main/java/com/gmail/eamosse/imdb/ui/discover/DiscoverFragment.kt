@@ -1,4 +1,4 @@
-package com.gmail.eamosse.imdb.ui.dashboard
+package com.gmail.eamosse.imdb.ui.discover
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.gmail.eamosse.imdb.R
 
-class DashboardFragment : Fragment() {
+class DiscoverFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var discoverViewModel: DiscoverViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(
+        discoverViewModel =
+            ViewModelProviders.of(this).get(DiscoverViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_discover, container, false)
+        val textView: TextView = root.findViewById(R.id.text_discover)
+        discoverViewModel.text.observe(
             viewLifecycleOwner,
             Observer {
                 textView.text = it
