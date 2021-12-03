@@ -1,4 +1,4 @@
-package com.gmail.eamosse.imdb.ui.home
+package com.gmail.eamosse.imdb.ui.home.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.gmail.eamosse.imdb.databinding.FragmentHomeSecondBinding
+import com.gmail.eamosse.imdb.ui.home.viewModel.HomeViewModel
+import com.gmail.eamosse.imdb.ui.home.adapter.MoviesAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeSecondFragment : Fragment() {
@@ -32,7 +34,6 @@ class HomeSecondFragment : Fragment() {
 
 
         with(homeViewModel) {
-            token.observe(viewLifecycleOwner, {
                 //récupérer les films par catégories
                 if(page == 1){
                     binding.pageNumber.text = page.toString()
@@ -57,16 +58,10 @@ class HomeSecondFragment : Fragment() {
 //                    }
                 }
 
-
-
-            })
-
             movies.observe(viewLifecycleOwner, {
                 binding.movieList.adapter = MoviesAdapter(it)
             })
 
         }
-
-
     }
 }

@@ -10,5 +10,7 @@ data class  Movie (
     val title: String,
     val video: Boolean,
     val vote_average: Number,
-    val vote_count: Int
+    val vote_count: Int,
+    val backdrop_path: String,
+    val release_date: String
 )

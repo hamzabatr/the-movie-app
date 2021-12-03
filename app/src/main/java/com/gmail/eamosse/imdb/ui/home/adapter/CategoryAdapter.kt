@@ -1,4 +1,4 @@
-package com.gmail.eamosse.imdb.ui.home
+package com.gmail.eamosse.imdb.ui.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,8 +6,8 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.eamosse.idbdata.data.Category
-import com.gmail.eamosse.imdb.MainActivity
 import com.gmail.eamosse.imdb.databinding.CategoryListItemBinding
+import com.gmail.eamosse.imdb.ui.home.fragment.HomeFragmentDirections
 
 class CategoryAdapter(private val items: List<Category>) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 

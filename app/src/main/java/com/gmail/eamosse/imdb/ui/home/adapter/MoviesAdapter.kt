@@ -1,4 +1,4 @@
-package com.gmail.eamosse.imdb.ui.home
+package com.gmail.eamosse.imdb.ui.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gmail.eamosse.idbdata.data.Movies
 import com.gmail.eamosse.imdb.databinding.MovieListItemBinding
+import com.gmail.eamosse.imdb.ui.home.fragment.HomeSecondFragmentDirections
 
 class MoviesAdapter(private val items: List<Movies>) :
     RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
