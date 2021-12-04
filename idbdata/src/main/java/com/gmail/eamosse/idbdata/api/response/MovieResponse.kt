@@ -24,8 +24,6 @@ internal data class MovieResponse(
     val video: Boolean,
     @SerializedName("vote_average")
     val vote_average: Number,
-    @SerializedName("vote_count")
-    val vote_count: Int,
     @SerializedName("backdrop_path")
     val backdrop_path: String,
     @SerializedName("release_date")
@@ -42,7 +40,6 @@ internal fun MovieResponse.toMovie() = Movie(
     title,
     video,
     vote_average,
-    vote_count,
     backdrop_path,
     release_date
 )
