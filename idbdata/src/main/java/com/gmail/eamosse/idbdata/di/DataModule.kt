@@ -2,7 +2,6 @@ package com.gmail.eamosse.idbdata.di
 
 import android.content.Context
 import androidx.room.Room
-import com.gmail.eamosse.idbdata.BuildConfig
 import com.gmail.eamosse.idbdata.api.service.MovieService
 import com.gmail.eamosse.idbdata.datasources.LocalDataSource
 import com.gmail.eamosse.idbdata.datasources.OnlineDataSource
@@ -12,11 +11,12 @@ import com.gmail.eamosse.idbdata.repository.MovieRepository
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.BuildConfig
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.*
+import java.util.* // ktlint-disable no-wildcard-imports
 import java.util.concurrent.TimeUnit
 
 val dataModule = module {
@@ -26,7 +26,7 @@ val dataModule = module {
             dao = get()
         )
     }
-    single() {
+    single {
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(get(named("BASE_URL")) as String)
@@ -76,17 +76,18 @@ private object NetworkXConfig {
                     dao
                 ).requestInterceptor
             )
-            .addInterceptor(HttpLoggingInterceptor().apply {
-                level = if (BuildConfig.DEBUG) {
-                    HttpLoggingInterceptor.Level.BODY
-                } else {
-                    HttpLoggingInterceptor.Level.NONE
+            .addInterceptor(
+                HttpLoggingInterceptor().apply {
+                    level = if (BuildConfig.DEBUG) {
+                        HttpLoggingInterceptor.Level.BODY
+                    } else {
+                        HttpLoggingInterceptor.Level.NONE
+                    }
                 }
-            })
+            )
             .readTimeout(30, TimeUnit.SECONDS)
             .connectTimeout(30, TimeUnit.SECONDS)
             .build()
-
     }
 }
 

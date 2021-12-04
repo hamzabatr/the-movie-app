@@ -1,17 +1,6 @@
 package com.gmail.eamosse.idbdata.data
 
-import com.google.gson.annotations.SerializedName
-
-data class Movies(
-
-    val poster_path: String,
-    val adult: Boolean,
-    val release_date: String,
-    val genre_ids: List<Int>,
+data class  Movies(
     val id: Int,
-    val original_language: String,
-    val title: String,
-    val popularity: Number,
-    val video: Boolean,
-    val vote_average: Number
+    val poster_path: String,
 )
