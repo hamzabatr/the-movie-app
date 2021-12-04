@@ -6,8 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.home.HomeFragment"
-        android:paddingBottom="?attr/actionBarSize">
+        tools:context=".ui.home.fragment.HomeFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/category_list"

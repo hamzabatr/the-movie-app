@@ -1,4 +1,4 @@
-package com.gmail.eamosse.imdb.ui.home
+package com.gmail.eamosse.imdb.ui.home.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

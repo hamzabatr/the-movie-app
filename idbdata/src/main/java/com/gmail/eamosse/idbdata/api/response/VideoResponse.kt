@@ -11,11 +11,14 @@ internal data class VideoResponse(
         @SerializedName("id")
         val id: String,
         @SerializedName("key")
-        val key: String
+        val key: String,
+        @SerializedName("site")
+        val site: String
     )
 }
 
 internal fun VideoResponse.Video.toVideo() = Video(
     id = id,
-    key = key
+    key = key,
+    site = site
 )
