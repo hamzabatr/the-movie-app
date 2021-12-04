@@ -45,5 +45,15 @@
     <string name="movie_poster">Movie poster</string>
     <string name="previous_page">previous page</string>
     <string name="next_page">next page</string>
+
     <string name="_1" translatable="false">1</string>
+    <string name="youtube_api_key">AIzaSyCrvDEI6K0DmQOm0eOHhKbItRmxFWhmwmA</string>
+    <string name="genres">Genres :</string>
+    <string name="original_language">Original language :</string>
+    <string name="for_adult">For adult only :</string>
+    <string name="production_companies">Production companies :</string>
+    <string name="video">Video</string>
+    <string name="play">Play</string>
+    <string name="release_date">Release date :</string>
+
 </resources>

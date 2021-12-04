@@ -1,7 +1,7 @@
 package com.gmail.eamosse.imdb.di
 
 import android.content.Context
-import com.gmail.eamosse.imdb.ui.home.HomeViewModel
+import com.gmail.eamosse.imdb.ui.home.viewModel.HomeViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
