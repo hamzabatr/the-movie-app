@@ -7,18 +7,15 @@ import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.preference.*
 import com.gmail.eamosse.imdb.R
 
-class SettingsFragment :
-    PreferenceFragmentCompat() {
+class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
-
         // gérer le choix des langues
         // gérer le mode sombre grace a un switch
         // gérer les paramètres de notifications :
         //      - lorsque les notifications sont désaciver les paramètre de mode et de volume le sont aussi
         //      - lorsque le mode vibreur ou le mode silencieux est activé, le volume est a 0 est le slider ne peut pas etre modifier
-
         settings()
     }
 
@@ -45,10 +42,10 @@ class SettingsFragment :
         findPreference<ListPreference>("notifications_mode")?.setEnabled(!notifications)
         findPreference<SeekBarPreference>("notifications_volume")?.setEnabled(
             !notifications && !(
-                notifications_mode.equals(
-                    getString(R.string.vibrate)
-                ) || notifications_mode.equals(getString(R.string.silent))
-                )
+                    notifications_mode.equals(
+                        getString(R.string.vibrate)
+                    ) || notifications_mode.equals(getString(R.string.silent))
+                    )
         )
     }
 }
