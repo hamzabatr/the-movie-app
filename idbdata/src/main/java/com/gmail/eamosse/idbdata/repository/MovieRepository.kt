@@ -85,4 +85,16 @@ class MovieRepository : KoinComponent {
             is Result.Error -> result
         }
     }
+
+    suspend fun searchForActor(query: String): Result<List<Actor>> {
+        return when (val result = online.searchForActor(query)) {
+            is Result.Succes -> {
+                val movies = result.data.map {
+                    it.toActor()
+                }
+                Result.Succes(movies)
+            }
+            is Result.Error -> result
+        }
+    }
 }

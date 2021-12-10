@@ -124,4 +124,25 @@ internal class OnlineDataSource(private val service: MovieService) {
             )
         }
     }
+
+    suspend fun searchForActor(query: String): Result<List<ActorsResponse.Actors>> {
+        return try {
+            val response = service.searchForActor(query)
+            if (response.isSuccessful) {
+                Result.Succes(response.body()!!.results)
+            } else {
+                Result.Error(
+                    exception = Exception(),
+                    message = response.message(),
+                    code = response.code()
+                )
+            }
+        } catch (e: Exception) {
+            Result.Error(
+                exception = e,
+                message = e.message ?: "No message",
+                code = -1
+            )
+        }
+    }
 }

@@ -26,8 +26,11 @@ internal interface MovieService {
     ): Response<MoviesResponse>
 
     @GET("movie/{movie_id}")
-    suspend fun getMovieById(@Path("movie_id") MovieId: String): Response<MovieResponse>
+    suspend fun getMovieById(@Path("movie_id") movieId: String): Response<MovieResponse>
 
     @GET("movie/{movie_id}/videos")
-    suspend fun getVideoMovieById(@Path("movie_id") MovieId: String): Response<VideoResponse>
+    suspend fun getVideoMovieById(@Path("movie_id") movieId: String): Response<VideoResponse>
+
+    @GET("search/person?")
+    suspend fun searchForActor(@Query("query") query: String): Response<ActorsResponse>
 }

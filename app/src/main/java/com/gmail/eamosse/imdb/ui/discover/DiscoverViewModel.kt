@@ -24,6 +24,10 @@ class DiscoverViewModel(private val repository: MovieRepository) : ViewModel() {
     val error: LiveData<String>
         get() = _error
 
+    private val _actor: MutableLiveData<List<Actor>> = MutableLiveData()
+    val actor: LiveData<List<Actor>>
+        get() = _actor
+
     init {
         viewModelScope.launch(Dispatchers.IO) {
             when (val result = repository.getToken()) {
@@ -42,6 +46,19 @@ class DiscoverViewModel(private val repository: MovieRepository) : ViewModel() {
             when (val result = repository.getCategories()) {
                 is Result.Succes -> {
                     _categories.postValue(result.data)
+                }
+                is Result.Error -> {
+                    _error.postValue(result.message)
+                }
+            }
+        }
+    }
+
+    fun searchForActor(query: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            when (val result = repository.searchForActor(query)) {
+                is Result.Succes -> {
+                    _actor.postValue(result.data)
                 }
                 is Result.Error -> {
                     _error.postValue(result.message)
