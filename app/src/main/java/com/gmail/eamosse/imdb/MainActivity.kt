@@ -2,14 +2,10 @@ package com.gmail.eamosse.imdb
 
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.gmail.eamosse.idbdata.repository.MovieRepository
@@ -26,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     private val repository: MovieRepository by inject()
     private lateinit var navController: NavController
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
