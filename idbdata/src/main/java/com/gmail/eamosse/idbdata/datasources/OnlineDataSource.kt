@@ -62,11 +62,11 @@ internal class OnlineDataSource(private val service: MovieService) {
     suspend fun getMoviesByCategory(
         genreId: String,
         page: Int
-    ): Result<List<MoviesResponse.Movies>> {
+    ): Result<MoviesResponse> {
         return try {
             val response = service.getMoviesByCategory(genreId, page)
             if (response.isSuccessful) {
-                Result.Succes(response.body()!!.results)
+                Result.Succes(response.body()!!)
             } else {
                 Result.Error(
                     exception = Exception(),
@@ -82,6 +82,8 @@ internal class OnlineDataSource(private val service: MovieService) {
             )
         }
     }
+
+
 
     suspend fun getMovieById(MovieId: String): Result<MovieResponse> {
         return try {
@@ -109,6 +111,48 @@ internal class OnlineDataSource(private val service: MovieService) {
             val response = service.getVideoMovieById(movieId)
             if (response.isSuccessful) {
                 Result.Succes(response.body()!!.results)
+            } else {
+                Result.Error(
+                    exception = Exception(),
+                    message = response.message(),
+                    code = response.code()
+                )
+            }
+        } catch (e: Exception) {
+            Result.Error(
+                exception = e,
+                message = e.message ?: "No message",
+                code = -1
+            )
+        }
+    }
+
+    suspend fun getMoviesBySearch(title: String, page: Int): Result<MoviesResponse> {
+        return try {
+            val response = service.getMoviesBySearch(title, page)
+            if (response.isSuccessful) {
+                Result.Succes(response.body()!!)
+            } else {
+                Result.Error(
+                    exception = Exception(),
+                    message = response.message(),
+                    code = response.code()
+                )
+            }
+        } catch (e: Exception) {
+            Result.Error(
+                exception = e,
+                message = e.message ?: "No message",
+                code = -1
+            )
+        }
+    }
+
+    suspend fun getPopularMovies(page: Int):Result<MoviesResponse> {
+        return try {
+            val response = service.getPopularMovies(page)
+            if (response.isSuccessful) {
+                Result.Succes(response.body()!!)
             } else {
                 Result.Error(
                     exception = Exception(),

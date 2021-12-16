@@ -1,6 +1,7 @@
 package com.gmail.eamosse.idbdata.api.service
 
-import com.gmail.eamosse.idbdata.api.response.*
+import android.icu.text.StringSearch
+import android.net.Uri
 import com.gmail.eamosse.idbdata.api.response.CategoryResponse
 import com.gmail.eamosse.idbdata.api.response.MovieResponse
 import com.gmail.eamosse.idbdata.api.response.MoviesResponse
@@ -26,8 +27,17 @@ internal interface MovieService {
     ): Response<MoviesResponse>
 
     @GET("movie/{movie_id}")
-    suspend fun getMovieById(@Path("movie_id") MovieId: String): Response<MovieResponse>
+    suspend fun getMovieById(@Path("movie_id") movieId: String): Response<MovieResponse>
 
     @GET("movie/{movie_id}/videos")
-    suspend fun getVideoMovieById(@Path("movie_id") MovieId: String): Response<VideoResponse>
+    suspend fun getVideoMovieById(@Path("movie_id") movieId: String): Response<VideoResponse>
+
+    @GET("search/movie?")
+    suspend fun getMoviesBySearch(
+        @Query("query") query: String,
+        @Query("page") page: Int
+    ): Response<MoviesResponse>
+
+    @GET("movie/popular?")
+    suspend fun getPopularMovies(@Query("page") page: Int): Response<MoviesResponse>
 }
