@@ -5,9 +5,7 @@ import com.gmail.eamosse.idbdata.data.Director
 import com.gmail.eamosse.idbdata.data.Movie
 import com.google.gson.annotations.SerializedName
 
-internal data class MovieResponse(
-    @SerializedName("adult")
-    val adult: Boolean,
+data class MovieResponse(
     @SerializedName("genres")
     val genres: List<Category>,
     @SerializedName("id")
@@ -20,27 +18,23 @@ internal data class MovieResponse(
     val production_companies: List<Director>,
     @SerializedName("title")
     val title: String,
-    @SerializedName("video")
-    val video: Boolean,
     @SerializedName("vote_average")
     val vote_average: Number,
-    @SerializedName("backdrop_path")
-    val backdrop_path: String,
     @SerializedName("release_date")
-    val release_date:String
+    val release_date:String,
+    @SerializedName("backdrop_path")
+    val backdrop_path: String
 )
 
-internal fun MovieResponse.toMovie() = Movie(
-    adult,
+internal fun MovieResponse.toMovie() = MovieResponse(
     genres,
     id,
     original_language,
     poster_path,
     production_companies,
     title,
-    video,
     vote_average,
-    backdrop_path,
-    release_date
+    release_date,
+    backdrop_path
 )
 

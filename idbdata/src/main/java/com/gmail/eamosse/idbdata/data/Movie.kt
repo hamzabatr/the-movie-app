@@ -1,15 +1,13 @@
 package com.gmail.eamosse.idbdata.data
 
 data class Movie(
-    val adult: Boolean,
+    val backdrop_path: String,
     val genres: List<Category>,
     val id: Int,
     val original_language: String,
     val poster_path: String,
     val production_companies: List<Director>,
     val title: String,
-    val video: Boolean,
     val vote_average: Number,
-    val backdrop_path: String,
     val release_date: String
 )
