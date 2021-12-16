@@ -1,10 +1,9 @@
-package com.gmail.eamosse.imdb.ui.home.viewModel
+package com.gmail.eamosse.imdb.ui.search.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gmail.eamosse.idbdata.api.response.MovieResponse
 import com.gmail.eamosse.idbdata.api.response.MoviesResponse
 import com.gmail.eamosse.idbdata.data.*
 import com.gmail.eamosse.idbdata.repository.MovieRepository
@@ -15,33 +14,19 @@ import kotlinx.coroutines.launch
 /**
  * VM permettant de gérer les données de la vue
  */
-class HomeViewModel(private val repository: MovieRepository) : ViewModel() {
+class SearchViewModel(private val repository: MovieRepository) : ViewModel() {
 
     private val _token: MutableLiveData<Token> = MutableLiveData()
     val token: LiveData<Token>
         get() = _token
 
-    private val _categories: MutableLiveData<List<Category>> = MutableLiveData()
-    val categories: LiveData<List<Category>>
-        get() = _categories
-
     private val _movies: MutableLiveData<MoviesResponse> = MutableLiveData()
     val movies: LiveData<MoviesResponse>
         get() = _movies
 
-    private val _movie: MutableLiveData<MovieResponse> = MutableLiveData()
-    val movie: LiveData<MovieResponse>
-        get() = _movie
-
-    private val _videos: MutableLiveData<List<Video>> = MutableLiveData()
-    val videos: LiveData<List<Video>>
-        get() = _videos
-
     private val _error: MutableLiveData<String> = MutableLiveData()
     val error: LiveData<String>
         get() = _error
-
-
 
     /**
      * Block d'initialisation du viewmodel
@@ -68,23 +53,9 @@ class HomeViewModel(private val repository: MovieRepository) : ViewModel() {
         }
     }
 
-    fun getCategories() {
+    fun getMoviesBySearch(title: String, page: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            when (val result = repository.getCategories()) {
-                is Result.Succes -> {
-                    _categories.postValue(result.data)
-                }
-                is Result.Error -> {
-                    _error.postValue(result.message)
-                }
-            }
-        }
-    }
-
-
-    fun getMoviesByCategory(genreId: String, page: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
-            when (val result = repository.getMoviesByCategory(genreId, page)) {
+            when (val result = repository.getMoviesBySearch(title, page)) {
                 is Result.Succes -> {
                     _movies.postValue(result.data)
                 }
@@ -95,11 +66,11 @@ class HomeViewModel(private val repository: MovieRepository) : ViewModel() {
         }
     }
 
-    fun getMovieById(movieId: String) {
+    fun getPopularMovies(page: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            when (val result = repository.getMovieById(movieId)) {
+            when (val result = repository.getPopularMovies(page)) {
                 is Result.Succes -> {
-                    _movie.postValue(result.data)
+                    _movies.postValue(result.data)
                 }
                 is Result.Error -> {
                     _error.postValue(result.message)
@@ -108,16 +79,6 @@ class HomeViewModel(private val repository: MovieRepository) : ViewModel() {
         }
     }
 
-    fun getVideoMovieById(movieId: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            when (val result = repository.getVideoMovieById(movieId)) {
-                is Result.Succes -> {
-                    _videos.postValue(result.data)
-                }
-                is Result.Error -> {
-                    _error.postValue(result.message)
-                }
-            }
-        }
-    }
+
+
 }

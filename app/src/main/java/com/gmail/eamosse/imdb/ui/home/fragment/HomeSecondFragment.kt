@@ -1,9 +1,11 @@
 package com.gmail.eamosse.imdb.ui.home.fragment
 
+import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.gmail.eamosse.imdb.databinding.FragmentHomeSecondBinding
@@ -23,41 +25,56 @@ class HomeSecondFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentHomeSecondBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         with(homeViewModel) {
-                //récupérer les films par catégories
-                if(page == 1){
-                    binding.pageNumber.text = page.toString()
-                    getMoviesByCategory(args.myArg, page)
-                }
+            with(binding) {
+                previous.isInvisible = true
+                getMoviesByCategory(args.myArg, page)
+                setAdapter()
 
-                binding.previous.setOnClickListener {
+                previous.setOnClickListener {
                     if (page > 1) {
                         page--
-                        binding.pageNumber.text = page.toString()
                         getMoviesByCategory(args.myArg, page)
+                        setAdapter()
+                    }
+                    if (page == 1) {
+                        previous.isInvisible = true
+                    }
+                    if (page < movies.value!!.total_pages) {
+                        next.isInvisible = false
                     }
                 }
 
-                binding.next.setOnClickListener {
-//                    if(page > 1){
-                    page++
-                    binding.pageNumber.text = page.toString()
-                    getMoviesByCategory(args.myArg, page)
-
-//                    }
+                next.setOnClickListener {
+                    if (page <= movies.value!!.total_pages) {
+                        page++
+                        getMoviesByCategory(args.myArg, page)
+                        setAdapter()
+                    }
+                    if (page > 1) {
+                        previous.isInvisible = false
+                    }
+                    if (page == movies.value!!.total_pages) {
+                        next.isInvisible = true
+                    }
                 }
-
-            movies.observe(viewLifecycleOwner, {
-                binding.movieList.adapter = MoviesAdapter(it)
-            })
+            }
         }
+    }
+
+    private fun setAdapter(){
+
+        homeViewModel.movies.observe(viewLifecycleOwner, {
+            with(binding){
+                movieList.adapter = MoviesAdapter(it)
+                pageNumber.text = page.toString() + " - " + it.total_pages.toString()
+            }
+        })
     }
 }

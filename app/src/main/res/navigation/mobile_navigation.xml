@@ -59,4 +59,15 @@
         android:id="@+id/navigation_about"
         android:name="com.gmail.eamosse.imdb.ui.about.AboutFragment"
         android:label="@string/title_about"/>
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.gmail.eamosse.imdb.ui.search.fragment.SearchFragment"
+        android:label="@string/search">
+        <action
+            android:id="@+id/action_navigation_search_to_navigation_movie"
+            app:destination="@id/navigation_movie" />
+        <argument
+            android:name="myArg"
+            app:argType="string" />
+    </fragment>
 </navigation>

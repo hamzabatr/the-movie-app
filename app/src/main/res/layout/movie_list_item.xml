@@ -5,7 +5,7 @@
     <data>
         <variable
             name="item"
-            type="com.gmail.eamosse.idbdata.data.Movies" />
+            type="com.gmail.eamosse.idbdata.api.response.MoviesResponse.Movies" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

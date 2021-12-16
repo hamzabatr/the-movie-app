@@ -43,4 +43,14 @@
     <string name="next_page">Page suivante</string>
     <string name="title_movie">Film</string>
     <string name="movie_poster">Image du film</string>
+    <string name="search">Recherche</string>
+    <string name="title_search">Search</string>
+    <string name="genres">Catégories :</string>
+    <string name="original_language">Langue originale :</string>
+    <string name="production_companies">Entreprises de production :</string>
+    <string name="release_date">Date de sortie :</string>
+    <string name="total_results">"Résultat total : "</string>
+    <string name="favorites">Favorites</string>
+    <string name="title_favorites">Favoris</string>
+
 </resources>

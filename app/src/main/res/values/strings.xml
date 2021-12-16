@@ -9,6 +9,8 @@
 
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
+
+    <string name="title_favorites">Favorites</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_about">About</string>
     <string name="title_settings">Settings</string>
@@ -47,13 +49,16 @@
     <string name="next_page">next page</string>
 
     <string name="_1" translatable="false">1</string>
-    <string name="youtube_api_key">AIzaSyCrvDEI6K0DmQOm0eOHhKbItRmxFWhmwmA</string>
+    <string name="youtube_api_key" translatable="false">AIzaSyCrvDEI6K0DmQOm0eOHhKbItRmxFWhmwmA</string>
     <string name="genres">Genres :</string>
     <string name="original_language">Original language :</string>
-    <string name="for_adult">For adult only :</string>
     <string name="production_companies">Production companies :</string>
-    <string name="video">Video</string>
-    <string name="play">Play</string>
     <string name="release_date">Release date :</string>
+    <string name="video" translatable="false">Video</string>
+    <string name="play" translatable="false">Play</string>
+    <string name="search">Search</string>
+    <string name="title_search">Search</string>
+    <string name="total_results">"Total results : "</string>
+    <string name="favorites">Favorites</string>
 
 </resources>
