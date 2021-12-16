@@ -51,25 +51,18 @@ class MovieRepository : KoinComponent {
         }
     }
 
-    suspend fun getMoviesByCategory(genreId: String, page: Int): Result<List<Movies>> {
+    suspend fun getMoviesByCategory(genreId: String, page: Int): Result<MoviesResponse> {
         return when (val result = online.getMoviesByCategory(genreId, page)) {
-            is Result.Succes -> {
-                // On utilise la fonction map pour convertir les catégories de la réponse serveur
-                // en liste de categories d'objets de l'application
-                val movies = result.data.map {
-                    it.toMovies()
-                }
-                Result.Succes(movies)
-            }
+            is Result.Succes -> Result.Succes(result.data.toResponse())
+
             is Result.Error -> result
         }
     }
 
-    suspend fun getMovieById(movieId: String): Result<Movie> {
+    suspend fun getMovieById(movieId: String): Result<MovieResponse> {
         return when (val result = online.getMovieById(movieId)) {
-            is Result.Succes -> {
-                Result.Succes(result.data.toMovie())
-            }
+            is Result.Succes -> Result.Succes(result.data.toMovie())
+
             is Result.Error -> result
         }
     }
@@ -82,6 +75,22 @@ class MovieRepository : KoinComponent {
                 }
                 Result.Succes(video)
             }
+            is Result.Error -> result
+        }
+    }
+
+    suspend fun getMoviesBySearch(title: String, page: Int): Result<MoviesResponse> {
+        return when (val result = online.getMoviesBySearch(title, page)) {
+            is Result.Succes -> Result.Succes(result.data.toResponse())
+
+            is Result.Error -> result
+        }
+    }
+
+    suspend fun getPopularMovies(page: Int): Result<MoviesResponse> {
+        return when (val result = online.getPopularMovies(page)) {
+            is Result.Succes -> Result.Succes(result.data.toResponse())
+
             is Result.Error -> result
         }
     }

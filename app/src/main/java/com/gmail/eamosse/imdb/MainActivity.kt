@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -24,6 +25,7 @@ import org.koin.android.ext.android.inject
 class MainActivity : AppCompatActivity() {
 
     private val repository: MovieRepository by inject()
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment)
+        navController = findNavController(R.id.nav_host_fragment)
         val navigated = NavigationUI.onNavDestinationSelected(item, navController)
         return navigated || super.onOptionsItemSelected(item)
     }
@@ -53,16 +55,21 @@ class MainActivity : AppCompatActivity() {
         // Instance de la bottom navigation
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         // Navigation controlleur, utilisée pour géter la navigation (ex. affichage de fragment)
-        val navController = findNavController(R.id.nav_host_fragment)
+        navController = findNavController(R.id.nav_host_fragment)
         // Charger les éléments principaux de la bottom bar
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_home, R.id.navigation_search, R.id.navigation_dashboard, R.id.navigation_notifications
             )
         )
         // Indiquer les éléments principaux de la bottom bar
         setupActionBarWithNavController(navController, appBarConfiguration)
         // Finalement, on lie la bottom bar et la nav controller
         navView.setupWithNavController(navController)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        navController.navigateUp()
+        return super.onSupportNavigateUp()
     }
 }

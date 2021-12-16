@@ -15,8 +15,6 @@ class HomeFragment : Fragment() {
     private val homeViewModel: HomeViewModel by viewModel()
     private lateinit var binding: FragmentHomeBinding
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,7 +29,6 @@ class HomeFragment : Fragment() {
         with(homeViewModel) {
 
             token.observe(viewLifecycleOwner, {
-                // récupérer les catégories
                 getCategories()
             })
 
