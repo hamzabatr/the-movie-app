@@ -245,7 +245,7 @@ internal class OnlineDataSource(private val service: MovieService) {
         page: Int
     ): Result<List<MoviesResponse.Movies>> {
         return try {
-            val response = service.discoverMoviesByActorAndYear(genreId, year, page)
+            val response = service.discoverMoviesByGenreAndYear(genreId, year, page)
             if (response.isSuccessful) {
                 Result.Succes(response.body()!!.results)
             } else {

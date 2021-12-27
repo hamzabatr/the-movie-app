@@ -66,9 +66,15 @@ class DiscoverFragment : Fragment(), TextWatcher {
         }
 
         with(binding) {
-            if (genreInput.text.toString() != getString(R.string.genre_help)) genre = true
-            if (actorInput.text.toString() != getString(R.string.actor_help)) actor = true
-            if (yearInput.text.toString() != getString(R.string.year_help)) year = true
+            if (genreInput.text.toString().isNotBlank() && genreInput.text.toString()
+                .isNotEmpty()
+            ) genre = true
+            if (actorInput.text.toString().isNotBlank() && actorInput.text.toString()
+                .isNotEmpty()
+            ) actor = true
+            if (yearInput.text.toString().isNotBlank() && yearInput.text.toString()
+                .isNotEmpty()
+            ) year = true
 
             discoverButton.isEnabled = genre || actor || year
         }

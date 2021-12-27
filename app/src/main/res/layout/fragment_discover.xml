@@ -58,11 +58,11 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:focusable="false"
+            android:focusableInTouchMode="true"
             android:hint="@string/genre_help"
             android:inputType="none"
             android:paddingStart="15dp"
             android:paddingEnd="0dp"
-            android:focusableInTouchMode="true"
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 

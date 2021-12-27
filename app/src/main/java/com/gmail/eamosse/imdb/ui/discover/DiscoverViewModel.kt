@@ -32,7 +32,7 @@ class DiscoverViewModel(private val repository: MovieRepository) : ViewModel() {
     val movies: LiveData<List<Movies>>
         get() = _movies
 
-    private lateinit var textSplitted: List<String>
+    private lateinit var textSplit: List<String>
     private var genreBool: Boolean = false
     private var actorBool: Boolean = false
     private var yearBool: Boolean = false
@@ -77,14 +77,14 @@ class DiscoverViewModel(private val repository: MovieRepository) : ViewModel() {
     }
 
     fun discoverMovies(text: String, page: Int) {
-        textSplitted = text.split("|")
+        textSplit = text.split("|")
 
-        val genre = textSplitted[0]
-        genreBool = textSplitted[1].toBoolean()
-        val actor = textSplitted[2]
-        actorBool = textSplitted[3].toBoolean()
-        val year = textSplitted[4]
-        yearBool = textSplitted[5].toBoolean()
+        val genre = textSplit[0]
+        genreBool = textSplit[1].toBoolean()
+        val actor = textSplit[2]
+        actorBool = textSplit[3].toBoolean()
+        val year = textSplit[4]
+        yearBool = textSplit[5].toBoolean()
 
         when {
             genreBool && actorBool && yearBool -> {
