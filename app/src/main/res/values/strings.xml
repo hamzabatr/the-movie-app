@@ -61,4 +61,13 @@
     <string name="total_results">"Total results : "</string>
     <string name="favorites">Favorites</string>
 
+    <string name="title_discover">Discover</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="icon_discover">Discover icon</string>
+    <string name="genre_help">Choose a genre from the list</string>
+    <string name="hint_discover">" Welcome in discover mode.\nYou can either find movies with a specific genre, or with someone acting/part of the crew member, or from a particular year, or all of these 3 filters.\nHave fun discovering ! "</string>
+    <string name="actor_help">Find an actor</string>
+    <string name="year_help">Type a year</string>
+    <string name="button_discover">Start discovering !</string>
+    <string name="title_discover_second">Discover movies</string>
 </resources>
