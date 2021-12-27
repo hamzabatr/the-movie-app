@@ -52,5 +52,13 @@
     <string name="total_results">"Résultat total : "</string>
     <string name="favorites">Favorites</string>
     <string name="title_favorites">Favoris</string>
+    <string name="title_discover">Découvrir</string>
+    <string name="icon_discover">Icône découvrir</string>
+    <string name="genre_help">Choississez un genre depuis la liste</string>
+    <string name="hint_discover">Bienvenue dans le mode découverte. Vous pouvez soit trouver des films selon un genre, ou avec un acteur/équipier de tournage, ou d\'une année en particulier, ou avec les 3 filtres ! Bonne exploration à vous !</string>
+    <string name="actor_help">Trouvez un acteur</string>
+    <string name="year_help">Tapez une année</string>
+    <string name="button_discover">Commencez la découverte</string>
+    <string name="title_discover_second">Découverte</string>
 
 </resources>

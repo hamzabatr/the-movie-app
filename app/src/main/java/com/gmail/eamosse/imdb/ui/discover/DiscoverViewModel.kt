@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gmail.eamosse.idbdata.api.response.MoviesResponse
 import com.gmail.eamosse.idbdata.data.*
 import com.gmail.eamosse.idbdata.repository.MovieRepository
 import com.gmail.eamosse.idbdata.utils.Result
@@ -28,8 +29,8 @@ class DiscoverViewModel(private val repository: MovieRepository) : ViewModel() {
     val actor: LiveData<List<Actor>>
         get() = _actor
 
-    private val _movies: MutableLiveData<List<Movies>> = MutableLiveData()
-    val movies: LiveData<List<Movies>>
+    private val _movies: MutableLiveData<MoviesResponse> = MutableLiveData()
+    val movies: LiveData<MoviesResponse>
         get() = _movies
 
     private lateinit var textSplit: List<String>

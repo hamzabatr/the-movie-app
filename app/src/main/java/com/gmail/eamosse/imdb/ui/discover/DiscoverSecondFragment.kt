@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import com.gmail.eamosse.imdb.R
 import com.gmail.eamosse.imdb.databinding.FragmentHomeSecondBinding
-import com.gmail.eamosse.imdb.ui.home.MoviesAdapter
+import com.gmail.eamosse.imdb.ui.home.adapter.MoviesAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DiscoverSecondFragment : Fragment() {
@@ -30,30 +32,48 @@ class DiscoverSecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         with(discoverViewModel) {
-            token.observe(viewLifecycleOwner, {
-                if (page == 1) {
-                    binding.pageNumber.text = page.toString()
-                    discoverMovies(args.myArg, page)
-                }
+            with(binding) {
+                previous.isInvisible = true
+                discoverMovies(args.myArg, page)
+                setAdapter()
 
-                binding.previous.setOnClickListener {
+                previous.setOnClickListener {
                     if (page > 1) {
                         page--
-                        binding.pageNumber.text = page.toString()
                         discoverMovies(args.myArg, page)
+                        setAdapter()
+                    }
+                    if (page == 1) {
+                        previous.isInvisible = true
+                    }
+                    if (page < movies.value!!.total_pages) {
+                        next.isInvisible = false
                     }
                 }
 
-                binding.next.setOnClickListener {
-                    page++
-                    binding.pageNumber.text = page.toString()
-                    discoverMovies(args.myArg, page)
+                next.setOnClickListener {
+                    if (page <= movies.value!!.total_pages) {
+                        page++
+                        discoverMovies(args.myArg, page)
+                        setAdapter()
+                    }
+                    if (page > 1) {
+                        previous.isInvisible = false
+                    }
+                    if (page == movies.value!!.total_pages) {
+                        next.isInvisible = true
+                    }
                 }
-            })
-
-            movies.observe(viewLifecycleOwner, {
-                binding.movieList.adapter = MoviesAdapter(it)
-            })
+            }
         }
+    }
+
+    private fun setAdapter() {
+        discoverViewModel.movies.observe(viewLifecycleOwner, {
+            with(binding) {
+                movieList.adapter = MoviesAdapter(it)
+                pageNumber.text = page.toString() + " - " + it.total_pages.toString()
+            }
+        })
     }
 }

@@ -90,7 +90,9 @@ class DiscoverFragment : Fragment(), TextWatcher {
         // Set list popup's content
         with(discoverViewModel) {
             if (item == "genre") {
-                getCategories()
+                token.observe(viewLifecycleOwner, {
+                    getCategories()
+                })
                 categories.observe(viewLifecycleOwner, {
                     genreList = it.toMutableList()
                     for (i in genreList) {
@@ -98,7 +100,9 @@ class DiscoverFragment : Fragment(), TextWatcher {
                     }
                 })
             } else if (item == "actor") {
-                searchForActor(Uri.encode(actorInput.text.toString()))
+                token.observe(viewLifecycleOwner, {
+                    searchForActor(Uri.encode(actorInput.text.toString()))
+                })
                 actor.observe(viewLifecycleOwner, {
                     actorList = it as MutableList<Actor>
                     for (i in actorList) {

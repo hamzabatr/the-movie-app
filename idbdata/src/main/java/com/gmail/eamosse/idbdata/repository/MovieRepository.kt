@@ -107,74 +107,50 @@ class MovieRepository : KoinComponent {
         }
     }
 
-    suspend fun discoverMovies(genreId: String, actorId: String, year: String, page: Int): Result<List<Movies>> {
+    suspend fun discoverMovies(genreId: String, actorId: String, year: String, page: Int): Result<MoviesResponse> {
         return when (val result = online.discoverMovies(genreId, actorId, year, page)) {
-            is Result.Succes -> {
-                val movies = result.data.map {
-                    it.toMovies()
-                }
-                Result.Succes(movies)
-            }
+            is Result.Succes -> Result.Succes(result.data.toResponse())
+
             is Result.Error -> result
         }
     }
 
-    suspend fun discoverMoviesByActor(actorId: String, page: Int): Result<List<Movies>> {
+    suspend fun discoverMoviesByActor(actorId: String, page: Int): Result<MoviesResponse> {
         return when (val result = online.discoverMoviesByActor(actorId, page)) {
-            is Result.Succes -> {
-                val movies = result.data.map {
-                    it.toMovies()
-                }
-                Result.Succes(movies)
-            }
+            is Result.Succes -> Result.Succes(result.data.toResponse())
+
             is Result.Error -> result
         }
     }
 
-    suspend fun discoverMoviesByYear(year: String, page: Int): Result<List<Movies>> {
+    suspend fun discoverMoviesByYear(year: String, page: Int): Result<MoviesResponse> {
         return when (val result = online.discoverMoviesByYear(year, page)) {
-            is Result.Succes -> {
-                val movies = result.data.map {
-                    it.toMovies()
-                }
-                Result.Succes(movies)
-            }
+            is Result.Succes -> Result.Succes(result.data.toResponse())
+
             is Result.Error -> result
         }
     }
 
-    suspend fun discoverMoviesByGenreAndActor(genreId: String, actorId: String, page: Int): Result<List<Movies>> {
+    suspend fun discoverMoviesByGenreAndActor(genreId: String, actorId: String, page: Int): Result<MoviesResponse> {
         return when (val result = online.discoverMoviesByGenreAndActor(genreId, actorId, page)) {
-            is Result.Succes -> {
-                val movies = result.data.map {
-                    it.toMovies()
-                }
-                Result.Succes(movies)
-            }
+            is Result.Succes -> Result.Succes(result.data.toResponse())
+
             is Result.Error -> result
         }
     }
 
-    suspend fun discoverMoviesByGenreAndYear(genreId: String, year: String, page: Int): Result<List<Movies>> {
+    suspend fun discoverMoviesByGenreAndYear(genreId: String, year: String, page: Int): Result<MoviesResponse> {
         return when (val result = online.discoverMoviesByGenreAndYear(genreId, year, page)) {
-            is Result.Succes -> {
-                val movies = result.data.map {
-                    it.toMovies()
-                }
-                Result.Succes(movies)
-            }
+            is Result.Succes -> Result.Succes(result.data.toResponse())
+
             is Result.Error -> result
         }
     }
 
-    suspend fun discoverMoviesByActorAndYear(actorId: String, year: String, page: Int): Result<List<Movies>> {
+    suspend fun discoverMoviesByActorAndYear(actorId: String, year: String, page: Int): Result<MoviesResponse> {
         return when (val result = online.discoverMoviesByActorAndYear(actorId, year, page)) {
-            is Result.Succes -> {
-                val movies = result.data.map {
-                    it.toMovies()
-                }
-                Result.Succes(movies)
-            }
+            is Result.Succes -> Result.Succes(result.data.toResponse())
+
             is Result.Error -> result
         }
     }

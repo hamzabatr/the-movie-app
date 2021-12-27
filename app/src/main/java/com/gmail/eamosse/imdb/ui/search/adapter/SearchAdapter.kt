@@ -53,5 +53,4 @@ class SearchAdapter(private val items: MoviesResponse) :
             }
         }
     }
-
 }

@@ -74,7 +74,6 @@ internal interface MovieService {
         @Query("year") year: String,
         @Query("page") page: Int
     ): Response<MoviesResponse>
-    suspend fun getVideoMovieById(@Path("movie_id") movieId: String): Response<VideoResponse>
 
     @GET("search/movie?")
     suspend fun getMoviesBySearch(

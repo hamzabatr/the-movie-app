@@ -1,6 +1,5 @@
 package com.gmail.eamosse.imdb.ui.search.fragment
 
-
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -22,7 +21,7 @@ class SearchFragment : Fragment(), TextWatcher {
     private lateinit var binding: FragmentSearchBinding
     private var delay: Long = 1000
     private var lastTextEdit: Long = 0
-    private var handler: Handler =  Handler()
+    private var handler: Handler = Handler()
     private var page: Int = 1
 
     override fun onCreateView(
@@ -41,7 +40,6 @@ class SearchFragment : Fragment(), TextWatcher {
     }
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
     }
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -72,7 +70,7 @@ class SearchFragment : Fragment(), TextWatcher {
         }
     }
 
-    private fun setPopularMovies(){
+    private fun setPopularMovies() {
         page = 1
         binding.previous.isInvisible = true
         searchViewModel.getPopularMovies(page)
@@ -110,7 +108,7 @@ class SearchFragment : Fragment(), TextWatcher {
         }
     }
 
-    private fun setSearchedMovie(){
+    private fun setSearchedMovie() {
         page = 1
         binding.previous.isInvisible = true
         if (System.currentTimeMillis() > lastTextEdit + delay - 500) {
@@ -150,4 +148,3 @@ class SearchFragment : Fragment(), TextWatcher {
         }
     }
 }
-

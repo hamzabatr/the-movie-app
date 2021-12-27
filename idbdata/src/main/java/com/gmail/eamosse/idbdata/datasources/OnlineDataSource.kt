@@ -146,7 +146,7 @@ internal class OnlineDataSource(private val service: MovieService) {
         }
     }
 
-    suspend fun getPopularMovies(page: Int):Result<MoviesResponse> {
+    suspend fun getPopularMovies(page: Int): Result<MoviesResponse> {
         return try {
             val response = service.getPopularMovies(page)
             if (response.isSuccessful) {
@@ -193,11 +193,11 @@ internal class OnlineDataSource(private val service: MovieService) {
         actorId: String,
         year: String,
         page: Int
-    ): Result<List<MoviesResponse.Movies>> {
+    ): Result<MoviesResponse> {
         return try {
             val response = service.discoverMovies(genreId, actorId, year, page)
             if (response.isSuccessful) {
-                Result.Succes(response.body()!!.results)
+                Result.Succes(response.body()!!)
             } else {
                 Result.Error(
                     exception = Exception(),
@@ -214,11 +214,11 @@ internal class OnlineDataSource(private val service: MovieService) {
         }
     }
 
-    suspend fun discoverMoviesByActor(actorId: String, page: Int): Result<List<MoviesResponse.Movies>> {
+    suspend fun discoverMoviesByActor(actorId: String, page: Int): Result<MoviesResponse> {
         return try {
             val response = service.discoverMoviesByActor(actorId, page)
             if (response.isSuccessful) {
-                Result.Succes(response.body()!!.results)
+                Result.Succes(response.body()!!)
             } else {
                 Result.Error(
                     exception = Exception(),
@@ -235,11 +235,11 @@ internal class OnlineDataSource(private val service: MovieService) {
         }
     }
 
-    suspend fun discoverMoviesByYear(year: String, page: Int): Result<List<MoviesResponse.Movies>> {
+    suspend fun discoverMoviesByYear(year: String, page: Int): Result<MoviesResponse> {
         return try {
             val response = service.discoverMoviesByYear(year, page)
             if (response.isSuccessful) {
-                Result.Succes(response.body()!!.results)
+                Result.Succes(response.body()!!)
             } else {
                 Result.Error(
                     exception = Exception(),
@@ -260,11 +260,11 @@ internal class OnlineDataSource(private val service: MovieService) {
         genreId: String,
         actorId: String,
         page: Int
-    ): Result<List<MoviesResponse.Movies>> {
+    ): Result<MoviesResponse> {
         return try {
             val response = service.discoverMoviesByGenreAndActor(genreId, actorId, page)
             if (response.isSuccessful) {
-                Result.Succes(response.body()!!.results)
+                Result.Succes(response.body()!!)
             } else {
                 Result.Error(
                     exception = Exception(),
@@ -285,11 +285,11 @@ internal class OnlineDataSource(private val service: MovieService) {
         genreId: String,
         year: String,
         page: Int
-    ): Result<List<MoviesResponse.Movies>> {
+    ): Result<MoviesResponse> {
         return try {
             val response = service.discoverMoviesByGenreAndYear(genreId, year, page)
             if (response.isSuccessful) {
-                Result.Succes(response.body()!!.results)
+                Result.Succes(response.body()!!)
             } else {
                 Result.Error(
                     exception = Exception(),
@@ -310,11 +310,11 @@ internal class OnlineDataSource(private val service: MovieService) {
         actorId: String,
         year: String,
         page: Int
-    ): Result<List<MoviesResponse.Movies>> {
+    ): Result<MoviesResponse> {
         return try {
             val response = service.discoverMoviesByActorAndYear(actorId, year, page)
             if (response.isSuccessful) {
-                Result.Succes(response.body()!!.results)
+                Result.Succes(response.body()!!)
             } else {
                 Result.Error(
                     exception = Exception(),
