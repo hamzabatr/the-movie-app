@@ -5,11 +5,9 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ListPopupWindow
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.gmail.eamosse.idbdata.data.Actor
 import com.gmail.eamosse.idbdata.data.Category
 import com.gmail.eamosse.imdb.R
@@ -26,6 +24,8 @@ class DiscoverFragment : Fragment(), TextWatcher {
     private var actor: Boolean = false
     private var year: Boolean = false
     private var genreId: Int = 0
+    private lateinit var genreList: MutableList<Category>
+    private lateinit var actorList: MutableList<Actor>
     private var actorId: Int = 0
 
     override fun onCreateView(
@@ -39,13 +39,15 @@ class DiscoverFragment : Fragment(), TextWatcher {
             actorInput.addTextChangedListener(this@DiscoverFragment)
             yearInput.addTextChangedListener(this@DiscoverFragment)
             genreInput.setOnClickListener {
-                showMenu()
+                showMenu(genreInput, "genre")
             }
             discoverButton.isEnabled = false
             discoverButton.setOnClickListener {
                 val text =
-                    genreInput.text.toString() + " " + actorInput.text.toString() + " " + yearInput.text.toString()
-                Toast.makeText(requireActivity(), text, Toast.LENGTH_LONG).show()
+                    genreId.toString() + "|" + genre.toString() + "|" + actorId.toString() + "|" + actor.toString() + "|" + yearInput.text.toString() + "|" + year.toString()
+                val nextAction =
+                    DiscoverFragmentDirections.actionDiscoverToDiscoverSecond(text)
+                Navigation.findNavController(it).navigate(nextAction)
             }
         }
 
@@ -59,105 +61,75 @@ class DiscoverFragment : Fragment(), TextWatcher {
     }
 
     override fun afterTextChanged(s: Editable?) {
-        if (actorInput.text.toString().length >= 3) {
-            val listPopupWindowButton = binding.actorInput
-            val listPopupWindow =
-                ListPopupWindow(requireContext(), null, R.attr.listPopupWindowStyle)
-            var actorList = emptyList<Actor>()
-            val actorName = mutableListOf<String>()
-
-            // Set button as the list popup's anchor
-            listPopupWindow.anchorView = listPopupWindowButton
-
-            // Set list popup's content
-            with(discoverViewModel) {
-                searchForActor(Uri.encode(actorInput.text.toString()))
-
-                actor.observe(viewLifecycleOwner, {
-                    actorList = it
-                    for (i in actorList) {
-                        actorName.add(i.name)
-                    }
-                })
-
-                error.observe(viewLifecycleOwner, {
-                    Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
-                })
-            }
-            val adapter = ArrayAdapter(
-                requireContext(),
-                R.layout.list_popup_window_item,
-                actorName
-            )
-            listPopupWindow.setAdapter(adapter)
-
-            // Set list popup's item click listener
-            listPopupWindow.setOnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
-                // Respond to list popup window item click.
-                actorInput.setText(actorList[position].name)
-                actorId = actorList[position].id
-                // Dismiss popup.
-                listPopupWindow.dismiss()
-            }
-
-            // Show list popup window on button click.
-            listPopupWindowButton.setOnClickListener { listPopupWindow.show() }
+        if (actorInput.text.toString().length >= 4) {
+            showMenu(actorInput, "actor")
         }
 
         with(binding) {
             if (genreInput.text.toString() != getString(R.string.genre_help)) genre = true
-            if (actorInput.text.toString().isNotBlank() && actorInput.text.toString()
-                .isNotEmpty()
-            ) actor = true
-            if (yearInput.text.toString().isNotBlank() && yearInput.text.toString()
-                .isNotEmpty()
-            ) year = true
+            if (actorInput.text.toString() != getString(R.string.actor_help)) actor = true
+            if (yearInput.text.toString() != getString(R.string.year_help)) year = true
 
             discoverButton.isEnabled = genre || actor || year
         }
     }
 
-    private fun showMenu() {
-        val listPopupWindowButton = binding.genreInput
+    private fun showMenu(itemInput: AutoCompleteTextView, item: String) {
         val listPopupWindow = ListPopupWindow(requireContext(), null, R.attr.listPopupWindowStyle)
-        var categoryList = emptyList<Category>()
-        val categoryName = mutableListOf<String>()
+        val itemName = mutableListOf<String>()
 
         // Set button as the list popup's anchor
-        listPopupWindow.anchorView = listPopupWindowButton
+        listPopupWindow.anchorView = itemInput
 
         // Set list popup's content
         with(discoverViewModel) {
-            getCategories()
-
-            categories.observe(viewLifecycleOwner, {
-                categoryList = it
-                for (i in categoryList) {
-                    categoryName.add(i.name)
-                }
-            })
+            if (item == "genre") {
+                getCategories()
+                categories.observe(viewLifecycleOwner, {
+                    genreList = it.toMutableList()
+                    for (i in genreList) {
+                        itemName.add(i.name)
+                    }
+                })
+            } else if (item == "actor") {
+                searchForActor(Uri.encode(actorInput.text.toString()))
+                actor.observe(viewLifecycleOwner, {
+                    actorList = it as MutableList<Actor>
+                    for (i in actorList) {
+                        itemName.add(i.name)
+                    }
+                })
+            }
 
             error.observe(viewLifecycleOwner, {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
             })
         }
+
         val adapter = ArrayAdapter(
             requireContext(),
             R.layout.list_popup_window_item,
-            categoryName
+            itemName
         )
+        adapter.notifyDataSetChanged()
         listPopupWindow.setAdapter(adapter)
 
         // Set list popup's item click listener
         listPopupWindow.setOnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
             // Respond to list popup window item click.
-            genreInput.setText(categoryList[position].name)
-            genreId = categoryList[position].id
+            if (item == "genre") {
+                itemInput.setText(genreList[position].name)
+                genreId = genreList[position].id
+            } else if (item == "actor") {
+                itemInput.setText(actorList[position].name)
+                actorId = actorList[position].id
+            }
+            adapter.notifyDataSetChanged()
             // Dismiss popup.
             listPopupWindow.dismiss()
         }
 
         // Show list popup window on button click.
-        listPopupWindowButton.setOnClickListener { listPopupWindow.show() }
+        itemInput.setOnClickListener { listPopupWindow.show() }
     }
 }

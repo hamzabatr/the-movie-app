@@ -17,14 +17,11 @@ internal data class ActorsResponse(
         @SerializedName("id")
         val id: Int,
         @SerializedName("name")
-        val name: String,
-        @SerializedName("known_for")
-        val known_for: String
+        val name: String
     )
 }
 
 internal fun ActorsResponse.Actors.toActor() = Actor(
     id = id,
-    name = name,
-    known_for = known_for
+    name = name
 )

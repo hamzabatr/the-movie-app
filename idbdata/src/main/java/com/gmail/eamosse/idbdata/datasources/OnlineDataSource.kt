@@ -145,4 +145,147 @@ internal class OnlineDataSource(private val service: MovieService) {
             )
         }
     }
+
+    suspend fun discoverMovies(
+        genreId: String,
+        actorId: String,
+        year: String,
+        page: Int
+    ): Result<List<MoviesResponse.Movies>> {
+        return try {
+            val response = service.discoverMovies(genreId, actorId, year, page)
+            if (response.isSuccessful) {
+                Result.Succes(response.body()!!.results)
+            } else {
+                Result.Error(
+                    exception = Exception(),
+                    message = response.message(),
+                    code = response.code()
+                )
+            }
+        } catch (e: Exception) {
+            Result.Error(
+                exception = e,
+                message = e.message ?: "No message",
+                code = -1
+            )
+        }
+    }
+
+    suspend fun discoverMoviesByActor(actorId: String, page: Int): Result<List<MoviesResponse.Movies>> {
+        return try {
+            val response = service.discoverMoviesByActor(actorId, page)
+            if (response.isSuccessful) {
+                Result.Succes(response.body()!!.results)
+            } else {
+                Result.Error(
+                    exception = Exception(),
+                    message = response.message(),
+                    code = response.code()
+                )
+            }
+        } catch (e: Exception) {
+            Result.Error(
+                exception = e,
+                message = e.message ?: "No message",
+                code = -1
+            )
+        }
+    }
+
+    suspend fun discoverMoviesByYear(year: String, page: Int): Result<List<MoviesResponse.Movies>> {
+        return try {
+            val response = service.discoverMoviesByYear(year, page)
+            if (response.isSuccessful) {
+                Result.Succes(response.body()!!.results)
+            } else {
+                Result.Error(
+                    exception = Exception(),
+                    message = response.message(),
+                    code = response.code()
+                )
+            }
+        } catch (e: Exception) {
+            Result.Error(
+                exception = e,
+                message = e.message ?: "No message",
+                code = -1
+            )
+        }
+    }
+
+    suspend fun discoverMoviesByGenreAndActor(
+        genreId: String,
+        actorId: String,
+        page: Int
+    ): Result<List<MoviesResponse.Movies>> {
+        return try {
+            val response = service.discoverMoviesByGenreAndActor(genreId, actorId, page)
+            if (response.isSuccessful) {
+                Result.Succes(response.body()!!.results)
+            } else {
+                Result.Error(
+                    exception = Exception(),
+                    message = response.message(),
+                    code = response.code()
+                )
+            }
+        } catch (e: Exception) {
+            Result.Error(
+                exception = e,
+                message = e.message ?: "No message",
+                code = -1
+            )
+        }
+    }
+
+    suspend fun discoverMoviesByGenreAndYear(
+        genreId: String,
+        year: String,
+        page: Int
+    ): Result<List<MoviesResponse.Movies>> {
+        return try {
+            val response = service.discoverMoviesByActorAndYear(genreId, year, page)
+            if (response.isSuccessful) {
+                Result.Succes(response.body()!!.results)
+            } else {
+                Result.Error(
+                    exception = Exception(),
+                    message = response.message(),
+                    code = response.code()
+                )
+            }
+        } catch (e: Exception) {
+            Result.Error(
+                exception = e,
+                message = e.message ?: "No message",
+                code = -1
+            )
+        }
+    }
+
+    suspend fun discoverMoviesByActorAndYear(
+        actorId: String,
+        year: String,
+        page: Int
+    ): Result<List<MoviesResponse.Movies>> {
+        return try {
+            val response = service.discoverMoviesByActorAndYear(actorId, year, page)
+            if (response.isSuccessful) {
+                Result.Succes(response.body()!!.results)
+            } else {
+                Result.Error(
+                    exception = Exception(),
+                    message = response.message(),
+                    code = response.code()
+                )
+            }
+        } catch (e: Exception) {
+            Result.Error(
+                exception = e,
+                message = e.message ?: "No message",
+                code = -1
+            )
+        }
+    }
 }

@@ -28,6 +28,15 @@ class DiscoverViewModel(private val repository: MovieRepository) : ViewModel() {
     val actor: LiveData<List<Actor>>
         get() = _actor
 
+    private val _movies: MutableLiveData<List<Movies>> = MutableLiveData()
+    val movies: LiveData<List<Movies>>
+        get() = _movies
+
+    private lateinit var textSplitted: List<String>
+    private var genreBool: Boolean = false
+    private var actorBool: Boolean = false
+    private var yearBool: Boolean = false
+
     init {
         viewModelScope.launch(Dispatchers.IO) {
             when (val result = repository.getToken()) {
@@ -62,6 +71,113 @@ class DiscoverViewModel(private val repository: MovieRepository) : ViewModel() {
                 }
                 is Result.Error -> {
                     _error.postValue(result.message)
+                }
+            }
+        }
+    }
+
+    fun discoverMovies(text: String, page: Int) {
+        textSplitted = text.split("|")
+
+        val genre = textSplitted[0]
+        genreBool = textSplitted[1].toBoolean()
+        val actor = textSplitted[2]
+        actorBool = textSplitted[3].toBoolean()
+        val year = textSplitted[4]
+        yearBool = textSplitted[5].toBoolean()
+
+        when {
+            genreBool && actorBool && yearBool -> {
+                viewModelScope.launch(Dispatchers.IO) {
+                    when (val result = repository.discoverMovies(genre, actor, year, page)) {
+                        is Result.Succes -> {
+                            _movies.postValue(result.data)
+                        }
+                        is Result.Error -> {
+                            _error.postValue(result.message)
+                        }
+                    }
+                }
+            }
+            genreBool && actorBool -> {
+                viewModelScope.launch(Dispatchers.IO) {
+                    when (
+                        val result =
+                            repository.discoverMoviesByGenreAndActor(genre, actor, page)
+                    ) {
+                        is Result.Succes -> {
+                            _movies.postValue(result.data)
+                        }
+                        is Result.Error -> {
+                            _error.postValue(result.message)
+                        }
+                    }
+                }
+            }
+            genreBool && yearBool -> {
+                viewModelScope.launch(Dispatchers.IO) {
+                    when (
+                        val result =
+                            repository.discoverMoviesByGenreAndYear(genre, year, page)
+                    ) {
+                        is Result.Succes -> {
+                            _movies.postValue(result.data)
+                        }
+                        is Result.Error -> {
+                            _error.postValue(result.message)
+                        }
+                    }
+                }
+            }
+            actorBool && yearBool -> {
+                viewModelScope.launch(Dispatchers.IO) {
+                    when (
+                        val result =
+                            repository.discoverMoviesByActorAndYear(actor, year, page)
+                    ) {
+                        is Result.Succes -> {
+                            _movies.postValue(result.data)
+                        }
+                        is Result.Error -> {
+                            _error.postValue(result.message)
+                        }
+                    }
+                }
+            }
+            genreBool -> {
+                viewModelScope.launch(Dispatchers.IO) {
+                    when (val result = repository.getMoviesByCategory(genre, page)) {
+                        is Result.Succes -> {
+                            _movies.postValue(result.data)
+                        }
+                        is Result.Error -> {
+                            _error.postValue(result.message)
+                        }
+                    }
+                }
+            }
+            actorBool -> {
+                viewModelScope.launch(Dispatchers.IO) {
+                    when (val result = repository.discoverMoviesByActor(actor, page)) {
+                        is Result.Succes -> {
+                            _movies.postValue(result.data)
+                        }
+                        is Result.Error -> {
+                            _error.postValue(result.message)
+                        }
+                    }
+                }
+            }
+            yearBool -> {
+                viewModelScope.launch(Dispatchers.IO) {
+                    when (val result = repository.discoverMoviesByYear(year, page)) {
+                        is Result.Succes -> {
+                            _movies.postValue(result.data)
+                        }
+                        is Result.Error -> {
+                            _error.postValue(result.message)
+                        }
+                    }
                 }
             }
         }

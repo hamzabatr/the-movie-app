@@ -7,14 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.gmail.eamosse.imdb.databinding.FragmentHomeSecondBinding
-import com.gmail.eamosse.imdb.ui.home.HomeViewModel
 import com.gmail.eamosse.imdb.ui.home.MoviesAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DiscoverSecondFragment : Fragment() {
 
     private val args: DiscoverSecondFragmentArgs by navArgs()
-    private val homeViewModel: HomeViewModel by viewModel()
+    private val discoverViewModel: DiscoverViewModel by viewModel()
     private lateinit var binding: FragmentHomeSecondBinding
     private var page: Int = 1
 
@@ -30,25 +29,25 @@ class DiscoverSecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with(homeViewModel) {
+        with(discoverViewModel) {
             token.observe(viewLifecycleOwner, {
                 if (page == 1) {
                     binding.pageNumber.text = page.toString()
-                    getMoviesByCategory(args.myArg, page)
+                    discoverMovies(args.myArg, page)
                 }
 
                 binding.previous.setOnClickListener {
                     if (page > 1) {
                         page--
                         binding.pageNumber.text = page.toString()
-                        getMoviesByCategory(args.myArg, page)
+                        discoverMovies(args.myArg, page)
                     }
                 }
 
                 binding.next.setOnClickListener {
                     page++
                     binding.pageNumber.text = page.toString()
-                    getMoviesByCategory(args.myArg, page)
+                    discoverMovies(args.myArg, page)
                 }
             })
 

@@ -44,14 +44,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/discover_text" />
 
-<!--    <com.google.android.material.button.MaterialButton-->
-<!--        android:id="@+id/genreButton"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/genre_help"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/discover_hint"-->
-<!--        android:layout_margin="10dp"/>-->
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/genreLabel"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -61,15 +53,17 @@
         android:layout_margin="10dp"
         android:focusable="false">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
             android:id="@+id/genreInput"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
+            android:layout_height="55dp"
+            android:focusable="false"
             android:hint="@string/genre_help"
             android:inputType="none"
-            android:clickable="false"
-            android:focusable="false"/>
+            android:paddingStart="15dp"
+            android:paddingEnd="0dp"
+            android:focusableInTouchMode="true"
+            android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -80,13 +74,15 @@
         app:layout_constraintTop_toBottomOf="@+id/genreLabel"
         android:layout_margin="10dp">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
             android:id="@+id/actorInput"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
+            android:layout_height="55dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="0dp"
+            android:textSize="16sp"
             android:hint="@string/actor_help"
-            android:inputType="text"/>
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
