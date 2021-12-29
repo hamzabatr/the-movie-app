@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.gmail.eamosse.imdb.R
 import com.gmail.eamosse.imdb.databinding.FragmentHomeSecondBinding
 import com.gmail.eamosse.imdb.ui.home.adapter.MoviesAdapter
 import com.gmail.eamosse.imdb.ui.home.viewModel.HomeViewModel
