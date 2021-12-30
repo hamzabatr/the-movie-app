@@ -68,5 +68,5 @@
     <string name="year_help">Type a year</string>
     <string name="button_discover">Start discovering !</string>
     <string name="title_discover_second">Discover movies</string>
-    <string name="actor_help">"Find "</string>
+    <string name="actor_help">"Find an actor"</string>
 </resources>
