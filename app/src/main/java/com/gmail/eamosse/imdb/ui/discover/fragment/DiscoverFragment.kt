@@ -1,5 +1,6 @@
 package com.gmail.eamosse.imdb.ui.discover.fragment
 
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -33,7 +34,7 @@ class DiscoverFragment : Fragment(), TextWatcher {
     private var lastTextEdit: Long = 0
     private var handler: Handler = Handler()
     private val inputFinishChecker = Runnable {
-        showMenu(actorInput, "actor")
+        showMenu(actorInput, "actor", requireContext())
     }
 
     override fun onCreateView(
@@ -47,7 +48,7 @@ class DiscoverFragment : Fragment(), TextWatcher {
             actorInput.addTextChangedListener(this@DiscoverFragment)
             yearInput.addTextChangedListener(this@DiscoverFragment)
             genreInput.setOnClickListener {
-                showMenu(genreInput, "genre")
+                showMenu(genreInput, "genre", requireContext())
             }
             discoverButton.isEnabled = false
             discoverButton.setOnClickListener {
@@ -90,8 +91,8 @@ class DiscoverFragment : Fragment(), TextWatcher {
         }
     }
 
-    private fun showMenu(itemInput: AutoCompleteTextView, item: String) {
-        val listPopupWindow = ListPopupWindow(requireContext(), null, R.attr.listPopupWindowStyle)
+    private fun showMenu(itemInput: AutoCompleteTextView, item: String, context: Context) {
+        val listPopupWindow = ListPopupWindow(context, null, R.attr.listPopupWindowStyle)
         val itemName = mutableListOf<String>()
 
         // Set button as the list popup's anchor
