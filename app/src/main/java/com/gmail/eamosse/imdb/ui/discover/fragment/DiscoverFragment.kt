@@ -13,7 +13,6 @@ import com.gmail.eamosse.idbdata.data.Actor
 import com.gmail.eamosse.idbdata.data.Category
 import com.gmail.eamosse.imdb.R
 import com.gmail.eamosse.imdb.databinding.FragmentDiscoverBinding
-import com.gmail.eamosse.imdb.ui.discover.adapter.DiscoverAdapter
 import com.gmail.eamosse.imdb.ui.discover.viewModel.DiscoverViewModel
 import kotlinx.android.synthetic.main.category_list_item.*
 import kotlinx.android.synthetic.main.fragment_discover.*
@@ -69,14 +68,13 @@ class DiscoverFragment : Fragment(), TextWatcher {
     }
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-    }
-
-    override fun afterTextChanged(s: Editable?) {
         if (actorInput.text.toString().length >= 3) {
             lastTextEdit = System.currentTimeMillis()
             handler.postDelayed(inputFinishChecker, delay)
         }
+    }
 
+    override fun afterTextChanged(s: Editable?) {
         with(binding) {
             if (genreInput.text.toString().isNotBlank() && genreInput.text.toString()
                 .isNotEmpty()
@@ -95,11 +93,6 @@ class DiscoverFragment : Fragment(), TextWatcher {
     private fun showMenu(itemInput: AutoCompleteTextView, item: String) {
         val listPopupWindow = ListPopupWindow(requireContext(), null, R.attr.listPopupWindowStyle)
         val itemName = mutableListOf<String>()
-        val adapter = ArrayAdapter(
-            requireContext(),
-            R.layout.list_popup_window_item,
-            itemName
-        )
 
         // Set button as the list popup's anchor
         listPopupWindow.anchorView = itemInput
@@ -113,18 +106,16 @@ class DiscoverFragment : Fragment(), TextWatcher {
                     for (i in genreList) {
                         itemName.add(i.name)
                     }
-                    adapter.notifyDataSetChanged()
-                    listPopupWindow.setAdapter(adapter)
                 })
             } else if (item == "actor") {
                 if (System.currentTimeMillis() > lastTextEdit + delay - 500) {
                     searchForActor(Uri.encode(actorInput.text.toString()))
                     actor.observe(viewLifecycleOwner, {
-//                        actorList = it as MutableList<Actor>
-//                        for (i in actorList) {
-//                            itemName.add(i.name)
-//                        }
-                        itemInput.setAdapter(DiscoverAdapter(requireContext(), itemInput.id, it))
+                        actorList = it as MutableList<Actor>
+                        for (i in actorList) {
+                            itemName.add(i.name)
+                        }
+//                        itemInput.setAdapter(DiscoverAdapter(requireContext(), itemInput.id, it))
                     })
                 }
             }
@@ -134,17 +125,25 @@ class DiscoverFragment : Fragment(), TextWatcher {
             })
         }
 
+        val adapter = ArrayAdapter(
+            requireContext(),
+            R.layout.list_popup_window_item,
+            itemName
+        )
+        adapter.notifyDataSetChanged()
+        listPopupWindow.setAdapter(adapter)
+
         // Set list popup's item click listener
         listPopupWindow.setOnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
             // Respond to list popup window item click.
             if (item == "genre") {
                 itemInput.setText(genreList[position].name)
                 genreId = genreList[position].id
-                adapter.notifyDataSetChanged()
             } else if (item == "actor") {
                 itemInput.setText(actorList[position].name)
                 actorId = actorList[position].id
             }
+            adapter.notifyDataSetChanged()
             // Dismiss popup.
             listPopupWindow.dismiss()
         }
