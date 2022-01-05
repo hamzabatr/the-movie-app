@@ -1,27 +1,25 @@
-package com.gmail.eamosse.imdb.ui.search.adapter
+package com.gmail.eamosse.imdb.ui.discover.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.cardview.widget.CardView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gmail.eamosse.idbdata.api.response.MoviesResponse
 import com.gmail.eamosse.imdb.R
-import com.gmail.eamosse.imdb.databinding.OtherMoviesListItemBinding
-import com.gmail.eamosse.imdb.ui.search.fragment.SearchFragmentDirections
+import com.gmail.eamosse.imdb.databinding.MovieListItemBinding
+import com.gmail.eamosse.imdb.ui.discover.fragment.DiscoverSecondFragmentDirections
 
-class SearchAdapter(private val items: MoviesResponse) :
-    RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
+class DiscoverAdapter(
+    private val items: MoviesResponse,
+) :
+    RecyclerView.Adapter<DiscoverAdapter.ViewHolder>() {
     private val basePosterPath = "https://image.tmdb.org/t/p/w500"
 
-    inner class ViewHolder(private val binding: OtherMoviesListItemBinding) :
+    inner class ViewHolder(private val binding: MovieListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        val mCardView: CardView = binding.cardViewId
-        val mPoster: ImageView = binding.poster
-        val mMovieName: AppCompatTextView = binding.movieName
+        val mMovieImg: AppCompatImageView = binding.movieImg
         fun bind(item: MoviesResponse.Movies) {
             binding.item = item
         }
@@ -29,7 +27,7 @@ class SearchAdapter(private val items: MoviesResponse) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return ViewHolder(OtherMoviesListItemBinding.inflate(inflater, parent, false))
+        return ViewHolder(MovieListItemBinding.inflate(inflater, parent, false))
     }
 
     override fun getItemCount(): Int = items.results.size
@@ -37,18 +35,16 @@ class SearchAdapter(private val items: MoviesResponse) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder) {
             bind(items.results[position])
-
-            val context = mPoster.context
+            val context = mMovieImg.context
             Glide.with(context)
                 .load(basePosterPath + items.results[position].poster_path)
                 .error(R.drawable.ic_baseline_image_24)
-                .into(mPoster)
-
-            mMovieName.text = items.results[position].title
-
-            mCardView.setOnClickListener {
+                .into(mMovieImg)
+            mMovieImg.setOnClickListener {
                 val nextAction =
-                    SearchFragmentDirections.actionNavigationSearchToNavigationMovie(items.results[position].id.toString())
+                    DiscoverSecondFragmentDirections.actionNavigationDiscoverSecondToNavigationMovie(
+                        items.results[position].id.toString()
+                    )
                 Navigation.findNavController(it).navigate(nextAction)
             }
         }

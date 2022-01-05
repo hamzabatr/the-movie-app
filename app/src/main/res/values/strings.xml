@@ -10,7 +10,6 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
 
-    <string name="title_favorites">Favorites</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_about">About</string>
     <string name="title_settings">Settings</string>
@@ -32,14 +31,14 @@
     <string name="english">English</string>
     <string name="francais">Français</string>
 
-    <string name="categorie">Categorie</string>
+    <string name="categorie">Category</string>
 
     <string name="batr_name">Batr Hamza</string>
-    <string name="batr_description">yo</string>
+    <string name="batr_description">In charge of Search package + Home package + Api stuff</string>
     <string name="roussy_name">Roussy Jeremy</string>
-    <string name="roussy_description">yo</string>
+    <string name="roussy_description">In charge of Home category images + Settings + About</string>
     <string name="saubanere_name">Saubanere Théo</string>
-    <string name="saubanere_description">yo</string>
+    <string name="saubanere_description">In charge of Discover package + Api stuff</string>
 
     <string name="home_second">Movies</string>
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
@@ -48,7 +47,7 @@
     <string name="previous_page">previous page</string>
     <string name="next_page">next page</string>
 
-    <string name="_1" translatable="false">1</string>
+    <string name="page_number" translatable="false">1</string>
     <string name="youtube_api_key" translatable="false">AIzaSyCrvDEI6K0DmQOm0eOHhKbItRmxFWhmwmA</string>
     <string name="genres">Genres :</string>
     <string name="original_language">Original language :</string>
@@ -61,4 +60,14 @@
     <string name="total_results">"Total results : "</string>
     <string name="favorites">Favorites</string>
 
+    <string name="title_discover">Discover</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="icon_discover">Discover icon</string>
+    <string name="genre_help">Choose a genre from the list</string>
+    <string name="hint_discover">" Welcome in discover mode.\nYou can either find movies with a specific genre, or with someone acting/part of the crew member, or from a particular year, or all of these 3 filters.\nHave fun discovering ! "</string>
+    <string name="year_help">Type a year</string>
+    <string name="button_discover">Start discovering !</string>
+    <string name="title_discover_second">Discover movies</string>
+    <string name="actor_help">"Find an actor"</string>
+    <string name="none">None</string>
 </resources>

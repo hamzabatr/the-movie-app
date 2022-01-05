@@ -2,7 +2,6 @@ package com.gmail.eamosse.idbdata.api.response
 
 import com.gmail.eamosse.idbdata.data.Category
 import com.gmail.eamosse.idbdata.data.Director
-import com.gmail.eamosse.idbdata.data.Movie
 import com.google.gson.annotations.SerializedName
 
 data class MovieResponse(
@@ -21,7 +20,7 @@ data class MovieResponse(
     @SerializedName("vote_average")
     val vote_average: Number,
     @SerializedName("release_date")
-    val release_date:String,
+    val release_date: String,
     @SerializedName("backdrop_path")
     val backdrop_path: String
 )
@@ -37,4 +36,3 @@ internal fun MovieResponse.toMovie() = MovieResponse(
     release_date,
     backdrop_path
 )
-

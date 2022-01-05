@@ -1,6 +1,5 @@
 package com.gmail.eamosse.idbdata.api.response
 
-import com.gmail.eamosse.idbdata.data.Movies
 import com.google.gson.annotations.SerializedName
 
 data class MoviesResponse(
@@ -27,4 +26,3 @@ internal fun MoviesResponse.toResponse() = MoviesResponse(
     results,
     total_pages
 )
-

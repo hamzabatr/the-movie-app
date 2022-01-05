@@ -42,10 +42,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
         findPreference<ListPreference>("notifications_mode")?.setEnabled(!notifications)
         findPreference<SeekBarPreference>("notifications_volume")?.setEnabled(
             !notifications && !(
-                    notifications_mode.equals(
-                        getString(R.string.vibrate)
-                    ) || notifications_mode.equals(getString(R.string.silent))
-                    )
+                notifications_mode.equals(
+                    getString(R.string.vibrate)
+                ) || notifications_mode.equals(getString(R.string.silent))
+                )
         )
     }
 }

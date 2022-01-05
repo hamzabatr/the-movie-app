@@ -2,7 +2,6 @@ package com.gmail.eamosse.imdb.ui.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageButton
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView

@@ -41,8 +41,6 @@ class HomeViewModel(private val repository: MovieRepository) : ViewModel() {
     val error: LiveData<String>
         get() = _error
 
-
-
     /**
      * Block d'initialisation du viewmodel
      * On en profite (pour l'instant) pour récupérer le token utilisateur
@@ -80,7 +78,6 @@ class HomeViewModel(private val repository: MovieRepository) : ViewModel() {
             }
         }
     }
-
 
     fun getMoviesByCategory(genreId: String, page: Int) {
         viewModelScope.launch(Dispatchers.IO) {

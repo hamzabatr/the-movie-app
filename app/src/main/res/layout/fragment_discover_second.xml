@@ -6,54 +6,35 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.search.fragment.SearchFragment">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/search_bar_lyt"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endIconMode="clear_text"
-            app:layout_constraintTop_toTopOf="parent"
-            app:startIconDrawable="@drawable/ic_search_black_24dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/search_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/search"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
+        tools:context=".ui.home.HomeSecondFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/popular_movies_list"
+            android:id="@+id/discover_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintBottom_toTopOf="@id/previous"
+            app:layout_constraintBottom_toTopOf="@+id/previous"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:spanCount="4"
-            tools:listitem="@layout/other_movies_list_item"
-            app:layout_constraintTop_toBottomOf="@id/search_bar_lyt"/>
+            tools:listitem="@layout/movie_list_item" />
 
-        <ImageButton
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/previous"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_navigate_before_24"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/popular_movies_list"
+            app:layout_constraintTop_toBottomOf="@id/discover_list"
             app:layout_constraintRight_toLeftOf="@id/page_number"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
-            android:contentDescription="@string/previous_page"
-            app:cornerRadius="50dp"
-            />
+            android:contentDescription="@string/previous_page" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/page_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,12 +42,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
             android:text="@string/page_number"
             />
 
-        <ImageButton
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -77,7 +58,5 @@
             android:layout_marginTop="5dp"
             android:layout_marginStart="10dp"
             android:contentDescription="@string/next_page" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

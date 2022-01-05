@@ -29,11 +29,11 @@
 
     <string name="batr_name">Batr Hamza</string>
     <string name="batr_description">Hamza à créer la page pour visualiser les catégories de film, ainsi que celles pour visualiser tous
-    les films d\'une certaine catégorie.</string>
+    les films d\'une certaine catégorie et également les fonctions de l\'API concernant ceci.</string>
     <string name="roussy_name">Roussy Jeremy</string>
-    <string name="roussy_description">Jeremy était responsable de la page de paramètres, ainsi que de la page à propos.</string>
+    <string name="roussy_description">Jeremy était responsable de la page de paramètres, ainsi que de la page à propos et également de l\'affichage des images des catégories de films.</string>
     <string name="saubanere_name">Saubanere Théo</string>
-    <string name="saubanere_description">Théo s\'est occupé de la barre de recherche</string>
+    <string name="saubanere_description">Théo s\'est occupé de la partie découverte et des fonctions de l\'API la concernant</string>
 
     <string name="home_second">Film</string>
     <string name="hello_home_second">Hello HomeSecondFragment. Arg: %1$s</string>
@@ -52,5 +52,14 @@
     <string name="total_results">"Résultat total : "</string>
     <string name="favorites">Favorites</string>
     <string name="title_favorites">Favoris</string>
+    <string name="title_discover">Découvrir</string>
+    <string name="icon_discover">Icône découvrir</string>
+    <string name="genre_help">Choississez un genre depuis la liste</string>
+    <string name="hint_discover">Bienvenue dans le mode découverte. Vous pouvez soit trouver des films selon un genre, ou avec un acteur/équipier de tournage, ou d\'une année en particulier, ou avec les 3 filtres ! Bonne exploration à vous !</string>
+    <string name="actor_help">Trouvez un acteur</string>
+    <string name="year_help">Tapez une année</string>
+    <string name="button_discover">Commencez la découverte</string>
+    <string name="title_discover_second">Découverte</string>
+    <string name="none">Aucune</string>
 
 </resources>

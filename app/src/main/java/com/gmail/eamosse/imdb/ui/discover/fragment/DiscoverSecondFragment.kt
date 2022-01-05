@@ -1,4 +1,4 @@
-package com.gmail.eamosse.imdb.ui.home.fragment
+package com.gmail.eamosse.imdb.ui.discover.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,14 +8,14 @@ import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.gmail.eamosse.imdb.databinding.FragmentHomeSecondBinding
-import com.gmail.eamosse.imdb.ui.home.adapter.MoviesAdapter
-import com.gmail.eamosse.imdb.ui.home.viewModel.HomeViewModel
+import com.gmail.eamosse.imdb.ui.discover.adapter.DiscoverAdapter
+import com.gmail.eamosse.imdb.ui.discover.viewModel.DiscoverViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeSecondFragment : Fragment() {
+class DiscoverSecondFragment : Fragment() {
 
-    private val args: HomeSecondFragmentArgs by navArgs()
-    private val homeViewModel: HomeViewModel by viewModel()
+    private val args: DiscoverSecondFragmentArgs by navArgs()
+    private val discoverViewModel: DiscoverViewModel by viewModel()
     private lateinit var binding: FragmentHomeSecondBinding
     private var page: Int = 1
 
@@ -30,16 +30,17 @@ class HomeSecondFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(homeViewModel) {
+
+        with(discoverViewModel) {
             with(binding) {
                 previous.isInvisible = true
-                getMoviesByCategory(args.myArg, page)
+                discoverMovies(args.myArg, page)
                 setAdapter()
 
                 previous.setOnClickListener {
                     if (page > 1) {
                         page--
-                        getMoviesByCategory(args.myArg, page)
+                        discoverMovies(args.myArg, page)
                         setAdapter()
                     }
                     if (page == 1) {
@@ -53,7 +54,7 @@ class HomeSecondFragment : Fragment() {
                 next.setOnClickListener {
                     if (page <= movies.value!!.total_pages) {
                         page++
-                        getMoviesByCategory(args.myArg, page)
+                        discoverMovies(args.myArg, page)
                         setAdapter()
                     }
                     if (page > 1) {
@@ -68,9 +69,9 @@ class HomeSecondFragment : Fragment() {
     }
 
     private fun setAdapter() {
-        homeViewModel.movies.observe(viewLifecycleOwner, {
+        discoverViewModel.movies.observe(viewLifecycleOwner, {
             with(binding) {
-                movieList.adapter = MoviesAdapter(it)
+                movieList.adapter = DiscoverAdapter(it)
                 pageNumber.text = page.toString() + " - " + it.total_pages.toString()
             }
         })
