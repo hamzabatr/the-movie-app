@@ -1,13 +1,12 @@
 package com.gmail.eamosse.imdb.ui.home.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.NonNull
-import androidx.databinding.BindingAdapter
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.gmail.eamosse.idbdata.api.response.MovieResponse
@@ -15,11 +14,10 @@ import com.gmail.eamosse.idbdata.data.Video
 import com.gmail.eamosse.imdb.R
 import com.gmail.eamosse.imdb.databinding.FragmentMovieBinding
 import com.gmail.eamosse.imdb.ui.home.viewModel.HomeViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerFullScreenListener
-
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieFragment : Fragment() {
 
@@ -45,25 +43,24 @@ class MovieFragment : Fragment() {
             with(binding) {
                 lifecycle.addObserver(youtube)
                 youtube.addYouTubePlayerListener(object :
-                    AbstractYouTubePlayerListener() {
-                    override fun onReady(@NonNull youTubePlayer: YouTubePlayer) {
-                        val videoId = checkSiteAndGetKey(videos.value!!)
-                        youTubePlayer.loadVideo(videoId, 0F)
-                    }
-                })
+                        AbstractYouTubePlayerListener() {
+                        override fun onReady(@NonNull youTubePlayer: YouTubePlayer) {
+                            val videoId = checkSiteAndGetKey(videos.value!!)
+                            youTubePlayer.loadVideo(videoId, 0F)
+                        }
+                    })
 
                 youtube.addFullScreenListener(object :
-                    YouTubePlayerFullScreenListener {
+                        YouTubePlayerFullScreenListener {
 
-                    override fun onYouTubePlayerEnterFullScreen() {
-                        youtube.enterFullScreen()
-                    }
+                        override fun onYouTubePlayerEnterFullScreen() {
+                            youtube.enterFullScreen()
+                        }
 
-                    override fun onYouTubePlayerExitFullScreen() {
-                        youtube.exitFullScreen()
-                    }
-                })
-
+                        override fun onYouTubePlayerExitFullScreen() {
+                            youtube.exitFullScreen()
+                        }
+                    })
 
                 movie.observe(viewLifecycleOwner, {
                     uploadImage(imageView, basePosterPath + it.poster_path)
@@ -94,7 +91,6 @@ class MovieFragment : Fragment() {
             .into(image)
     }
 
-
     private fun getDirectors(movie: MovieResponse): String {
         var value = ""
         for ((i, director) in movie.production_companies.withIndex()) {
@@ -122,6 +118,4 @@ class MovieFragment : Fragment() {
     private fun getTitleAndVote(movie: MovieResponse): String {
         return movie.title + " (" + movie.vote_average + "/10)"
     }
-
 }
-

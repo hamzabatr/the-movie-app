@@ -68,7 +68,6 @@ class HomeSecondFragment : Fragment() {
     }
 
     private fun setAdapter() {
-
         homeViewModel.movies.observe(viewLifecycleOwner, {
             with(binding) {
                 movieList.adapter = MoviesAdapter(it)

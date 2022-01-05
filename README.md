@@ -41,7 +41,7 @@ Techniquement, ce projet devrait nous permettre d'expérimenter de manière plus
 - Commits, branches, et pull requests (il n'y aura pas de notes de groupe, le travail de chacun sera évalué principalement sur les commits) 
 
 ## Rendu
-- Date limite : 30 Novembre 2021 (avant minuit) 
+- Date limite : Début janvier 2022
 - Modalités de rendu : Remplir le drive qui vous sera envoyé par mail
 - Ajouté un fichier readme dans lequel vous décrirez 
     - Le contexte du projet et ses différentes fonctionnalités
@@ -50,9 +50,11 @@ Techniquement, ce projet devrait nous permettre d'expérimenter de manière plus
     - Vidéos de démonstration de l'application 
 
 ## Le contexte du projet et ses différentes fonctionnalités
-C'est une application de streaming de films, piochés depuis une base de données distante. Elle a deux fonctionnalités majeures :
-- Afficher différentes catégories de films,
-- Afficher différents films d'une catégorie.
+C'est une application de streaming de films, piochés depuis une base de données distante. Elle a trois fonctionnalités majeures :
+- Afficher différentes catégories de films ainsi que les différents films de cette catégories si appui sur l'une d'elle,
+- Une fonction recherche,
+- Une fonction découverte.
+La gestion de quelques paramètres et un affichage "A propos" est également possible.
 
 ## Membres du groupe
 - BATR Hamza

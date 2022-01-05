@@ -33,7 +33,7 @@ class DiscoverFragment : Fragment(), TextWatcher {
     private var delay: Long = 1000
     private var lastTextEdit: Long = 0
     private var handler: Handler = Handler()
-    private val inputFinishChecker = Runnable {
+    private val actorInputFinishChecker = Runnable {
         showMenu(actorInput, "actor", requireContext())
     }
 
@@ -49,6 +49,11 @@ class DiscoverFragment : Fragment(), TextWatcher {
             yearInput.addTextChangedListener(this@DiscoverFragment)
             genreInput.setOnClickListener {
                 showMenu(genreInput, "genre", requireContext())
+            }
+            genreInput.setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus) showMenu(
+                    genreInput, "genre", requireContext()
+                )
             }
             discoverButton.isEnabled = false
             discoverButton.setOnClickListener {
@@ -71,7 +76,7 @@ class DiscoverFragment : Fragment(), TextWatcher {
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
         if (actorInput.text.toString().length >= 3) {
             lastTextEdit = System.currentTimeMillis()
-            handler.postDelayed(inputFinishChecker, delay)
+            handler.postDelayed(actorInputFinishChecker, delay)
         }
     }
 
@@ -116,7 +121,6 @@ class DiscoverFragment : Fragment(), TextWatcher {
                         for (i in actorList) {
                             itemName.add(i.name)
                         }
-//                        itemInput.setAdapter(DiscoverAdapter(requireContext(), itemInput.id, it))
                     })
                 }
             }
@@ -138,8 +142,11 @@ class DiscoverFragment : Fragment(), TextWatcher {
         listPopupWindow.setOnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
             // Respond to list popup window item click.
             if (item == "genre") {
-                itemInput.setText(genreList[position].name)
-                genreId = genreList[position].id
+                if (position == itemName.size + 1) itemInput.text.clear()
+                else {
+                    itemInput.setText(genreList[position].name)
+                    genreId = genreList[position].id
+                }
             } else if (item == "actor") {
                 itemInput.setText(actorList[position].name)
                 actorId = actorList[position].id

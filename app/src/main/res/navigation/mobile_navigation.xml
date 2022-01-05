@@ -49,6 +49,9 @@
         <argument
             android:name="myArg"
             app:argType="string" />
+        <action
+            android:id="@+id/action_navigation_discover_second_to_navigation_movie"
+            app:destination="@id/navigation_movie" />
     </fragment>
 
     <fragment

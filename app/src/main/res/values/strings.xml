@@ -34,11 +34,11 @@
     <string name="categorie">Category</string>
 
     <string name="batr_name">Batr Hamza</string>
-    <string name="batr_description">yo</string>
+    <string name="batr_description">In charge of Search package + Home package + Api stuff</string>
     <string name="roussy_name">Roussy Jeremy</string>
-    <string name="roussy_description">yo</string>
+    <string name="roussy_description">In charge of Home category images + Settings + About</string>
     <string name="saubanere_name">Saubanere Théo</string>
-    <string name="saubanere_description">yo</string>
+    <string name="saubanere_description">In charge of Discover package + Api stuff</string>
 
     <string name="home_second">Movies</string>
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
@@ -69,4 +69,5 @@
     <string name="button_discover">Start discovering !</string>
     <string name="title_discover_second">Discover movies</string>
     <string name="actor_help">"Find an actor"</string>
+    <string name="none">None</string>
 </resources>

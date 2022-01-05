@@ -8,8 +8,8 @@ import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.gmail.eamosse.imdb.databinding.FragmentHomeSecondBinding
+import com.gmail.eamosse.imdb.ui.discover.adapter.DiscoverAdapter
 import com.gmail.eamosse.imdb.ui.discover.viewModel.DiscoverViewModel
-import com.gmail.eamosse.imdb.ui.home.adapter.MoviesAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DiscoverSecondFragment : Fragment() {
@@ -71,7 +71,7 @@ class DiscoverSecondFragment : Fragment() {
     private fun setAdapter() {
         discoverViewModel.movies.observe(viewLifecycleOwner, {
             with(binding) {
-                movieList.adapter = MoviesAdapter(it)
+                movieList.adapter = DiscoverAdapter(it)
                 pageNumber.text = page.toString() + " - " + it.total_pages.toString()
             }
         })
