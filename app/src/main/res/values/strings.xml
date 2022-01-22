@@ -68,6 +68,7 @@
     <string name="year_help">Type a year</string>
     <string name="button_discover">Start discovering !</string>
     <string name="title_discover_second">Discover movies</string>
-    <string name="actor_help">"Find an actor"</string>
+    <string name="actor_help">"Find an actor or a crew member"</string>
     <string name="none">None</string>
+    <string name="actor_helper_text">You may need to press \"Next\" on your keyboard to see the list ;)</string>
 </resources>

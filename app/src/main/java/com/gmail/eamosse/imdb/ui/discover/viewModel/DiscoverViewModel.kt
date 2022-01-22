@@ -14,8 +14,6 @@ import kotlinx.coroutines.launch
 class DiscoverViewModel(private val repository: MovieRepository) : ViewModel() {
 
     private val _token: MutableLiveData<Token> = MutableLiveData()
-    val token: LiveData<Token>
-        get() = _token
 
     private val _categories: MutableLiveData<List<Category>> = MutableLiveData()
     val categories: LiveData<List<Category>>
@@ -25,9 +23,9 @@ class DiscoverViewModel(private val repository: MovieRepository) : ViewModel() {
     val error: LiveData<String>
         get() = _error
 
-    private val _actor: MutableLiveData<List<Actor>> = MutableLiveData()
-    val actor: LiveData<List<Actor>>
-        get() = _actor
+    private val _actors: MutableLiveData<List<Actor>> = MutableLiveData()
+    val actors: LiveData<List<Actor>>
+        get() = _actors
 
     private val _movies: MutableLiveData<MoviesResponse> = MutableLiveData()
     val movies: LiveData<MoviesResponse>
@@ -68,7 +66,7 @@ class DiscoverViewModel(private val repository: MovieRepository) : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             when (val result = repository.searchForActor(query)) {
                 is Result.Succes -> {
-                    _actor.postValue(result.data)
+                    _actors.postValue(result.data)
                 }
                 is Result.Error -> {
                     _error.postValue(result.message)

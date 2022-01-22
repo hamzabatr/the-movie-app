@@ -61,5 +61,6 @@
     <string name="button_discover">Commencez la découverte</string>
     <string name="title_discover_second">Découverte</string>
     <string name="none">Aucune</string>
+    <string name="actor_helper_text">Vous devrez appuyer sur \"Suivant\" de votre clavier pour voir la liste ;)</string>
 
 </resources>
