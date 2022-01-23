@@ -53,7 +53,6 @@ class CategoryAdapter(private val items: List<Category>) :
             "Western" -> holder.mCategoryIllustration.setImageResource(R.drawable.ic_western)
         }
 
-
         holder.bind(items[position])
         holder.mCategoryImg.setOnClickListener {
             val nextAction =

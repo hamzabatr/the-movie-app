@@ -41,7 +41,7 @@ Techniquement, ce projet devrait nous permettre d'expérimenter de manière plus
 - Commits, branches, et pull requests (il n'y aura pas de notes de groupe, le travail de chacun sera évalué principalement sur les commits) 
 
 ## Rendu
-- Date limite : Début janvier 2022
+- Date limite : 23 janvier 2022
 - Modalités de rendu : Remplir le drive qui vous sera envoyé par mail
 - Ajouté un fichier readme dans lequel vous décrirez 
     - Le contexte du projet et ses différentes fonctionnalités
@@ -50,11 +50,11 @@ Techniquement, ce projet devrait nous permettre d'expérimenter de manière plus
     - Vidéos de démonstration de l'application 
 
 ## Le contexte du projet et ses différentes fonctionnalités
-C'est une application de streaming de films, piochés depuis une base de données distante. Elle a trois fonctionnalités majeures :
-- Afficher différentes catégories de films ainsi que les différents films de cette catégories si appui sur l'une d'elle,
+C'est une application de streaming de bande-annonce de films. Elle a trois fonctionnalités majeures :
+- Une page principale affichant différentes catégories de films, ainsi que les différents films de cette catégories si l'on en choisit une,
 - Une fonction recherche,
 - Une fonction découverte.
-La gestion de quelques paramètres et un affichage "A propos" est également possible.
+Une page "Paramètres" et "A propos" sont également disponibles.
 
 ## Membres du groupe
 - BATR Hamza
@@ -62,3 +62,4 @@ La gestion de quelques paramètres et un affichage "A propos" est également pos
 - SAUBANERE Théo
 
 ## Captures d'écrans des principales vues et vidéos de démonstration de l'application
+https://www.youtube.com/watch?v=PhwiDb8LeOg&ab_channel=Th%C3%A9oSAUBANERE
