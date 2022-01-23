@@ -90,7 +90,7 @@ class DiscoverFragment : Fragment(), TextWatcher {
                 .isNotEmpty()
             actor = actorInput.text.toString().isNotBlank() && actorInput.text.toString()
                 .isNotEmpty()
-            yearInput.text.toString().isNotBlank() && yearInput.text.toString()
+            year = yearInput.text.toString().isNotBlank() && yearInput.text.toString()
                 .isNotEmpty()
 
             discoverButton.isEnabled = genre || actor || year
