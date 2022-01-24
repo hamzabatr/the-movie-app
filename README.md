@@ -62,4 +62,4 @@ Une page "Paramètres" et "A propos" sont également disponibles.
 - SAUBANERE Théo
 
 ## Captures d'écrans des principales vues et vidéos de démonstration de l'application
-https://www.youtube.com/watch?v=PhwiDb8LeOg&ab_channel=Th%C3%A9oSAUBANERE
+https://youtu.be/Dc8-XaJasQQ
